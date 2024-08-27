@@ -1,35 +1,32 @@
-const add = document.querySelector(".add");
-const del = document.querySelector(".del");
-const input = document.querySelector(".add-todo");
-const ul = document.querySelector(".ul");
+const btn = document.querySelector(".btn");
+const timer = document.querySelector(".time");
 
-let allTodos = JSON.parse(localStorage.getItem("todos")) || [];
+let isCount = true;
+let count = 0;
+let interval;
 
-add.addEventListener("click", () => {
-  if (input.value !== "") {
-    const todoText = input.value;
-    const todoParent = document.createElement("div");
-    todoParent.className = "todo";
-    const todo = document.createElement("li");
-    const deleteBtn = document.createElement("button");
-    deleteBtn.className = "delete-todo";
-
-    todoParent.appendChild(todo);
-    todoParent.appendChild(deleteBtn);
-    deleteBtn.textContent = "delete";
-
-    deleteBtn.addEventListener("click", () => {
-      todoParent.remove();
-    });
-
-    todo.innerHTML = input.value;
-
-    ul.appendChild(todoParent);
-
-    input.value = "";
-    allTodos.push(todoText);
-    localStorage.setItem("todos", allTodos);
+btn.addEventListener("click", () => {
+  if (isCount) {
+    const interval = setInterval(() => {
+      count++;
+      btn.disabled = true;
+      timer.innerHTML = count;
+      if (count === 10) {
+        clearInterval(interval);
+        isCount = false;
+        btn.disabled = false;
+      }
+    }, 100);
   } else {
-    alert("please provide todo first");
+    const interval = setInterval(() => {
+      count--;
+      btn.disabled = true;
+      timer.innerHTML = count;
+      if (count <= 1) {
+        clearInterval(interval);
+        isCount = true;
+        btn.disabled = false;
+      }
+    }, 100);
   }
 });
