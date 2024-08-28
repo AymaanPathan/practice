@@ -1,34 +1,23 @@
-const mainDiv = document.querySelector(".main");
+var x = 10;
 
-const handleApi = async () => {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data);
-      data.map((data) => {
-        const card = document.createElement("div");
-        card.className = "card";
-        const h1 = document.createElement("h1");
-        const h3 = document.createElement("h3");
-        const p = document.createElement("p");
-        const span = document.createElement("span");
-        card.appendChild(h1);
-        card.appendChild(h3);
-        card.appendChild(p);
-        card.appendChild(span);
-        mainDiv.appendChild(card);
+function test() {
+  console.log(x);
+  var x = 20;
+  console.log(x);
+}
 
-        h1.innerHTML = data.username;
-        h3.innerHTML = data.name;
-        p.innerHTML = data.email;
-        span.innerHTML = data.address.city;
-      });
-    } else {
-      console.log("Error");
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-handleApi();
+test();
+
+// Output will be -> undefined and 20
+
+// Why
+
+/* because firstly the gobal execution context wil created and in that there will be a 
+2 component memory component and code component in memory component the x will be 
+initialized and the value will be undefined in phase 1 of creaion after that x will
+be 10 and next there is a function called test() for this a new execution context
+will be created and all variable will be assigned in memory component x will be 
+undefined and in line of console.log(x) it will give undefined and the code moves 
+to x =20 in execution context of this function first x will undefined and after in 
+second phase the x will be 20 and lastly the console.log x and output will be 
+undefined and 20*/
