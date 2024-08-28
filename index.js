@@ -1,32 +1,34 @@
-const btn = document.querySelector(".btn");
-const timer = document.querySelector(".time");
+const mainDiv = document.querySelector(".main");
 
-let isCount = true;
-let count = 0;
-let interval;
+const handleApi = async () => {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      data.map((data) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        const h1 = document.createElement("h1");
+        const h3 = document.createElement("h3");
+        const p = document.createElement("p");
+        const span = document.createElement("span");
+        card.appendChild(h1);
+        card.appendChild(h3);
+        card.appendChild(p);
+        card.appendChild(span);
+        mainDiv.appendChild(card);
 
-btn.addEventListener("click", () => {
-  if (isCount) {
-    const interval = setInterval(() => {
-      count++;
-      btn.disabled = true;
-      timer.innerHTML = count;
-      if (count === 10) {
-        clearInterval(interval);
-        isCount = false;
-        btn.disabled = false;
-      }
-    }, 100);
-  } else {
-    const interval = setInterval(() => {
-      count--;
-      btn.disabled = true;
-      timer.innerHTML = count;
-      if (count <= 1) {
-        clearInterval(interval);
-        isCount = true;
-        btn.disabled = false;
-      }
-    }, 100);
+        h1.innerHTML = data.username;
+        h3.innerHTML = data.name;
+        p.innerHTML = data.email;
+        span.innerHTML = data.address.city;
+      });
+    } else {
+      console.log("Error");
+    }
+  } catch (error) {
+    console.log(error);
   }
-});
+};
+handleApi();

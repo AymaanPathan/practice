@@ -1,19 +1,5 @@
-.name {
-  color: red;
+.card {
   border: 2px solid black;
-  width: fit-content;
-}
-.email {
-  color: blue;
-  border: 2px solid black;
-  width: fit-content;
-}
-.todo {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.main {
-  width: 500px;
+  width: 320px;
+  text-align: center;
 }
