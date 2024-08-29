@@ -1,23 +1,30 @@
-var x = 10;
-
-function test() {
-  console.log(x);
-  var x = 20;
-  console.log(x);
+var b = 10;
+function a() {
+  c();
+  function c() {
+    console.log(b);
+  }
 }
+a();
 
-test();
-
-// Output will be -> undefined and 20
+// Output is 10
 
 // Why
 
-/* because firstly the gobal execution context wil created and in that there will be a 
-2 component memory component and code component in memory component the x will be 
-initialized and the value will be undefined in phase 1 of creaion after that x will
-be 10 and next there is a function called test() for this a new execution context
-will be created and all variable will be assigned in memory component x will be 
-undefined and in line of console.log(x) it will give undefined and the code moves 
-to x =20 in execution context of this function first x will undefined and after in 
-second phase the x will be 20 and lastly the console.log x and output will be 
-undefined and 20*/
+/*bcoz there is a concept called lexical means in above code there is a 2 function a 
+and c for a it will create a new execution context and for b also new execution 
+context will be created in c function we a console a so what will this do is first
+the c function will try to find c in c function if it will not found in this scope
+it will go to its parent which is a a function and try to find it there and again 
+there is no b variable will found and again it will go to parent of a which is 
+global scope and yes there is a b variable in global space so the output will
+be 10 */
+
+// What is lexical
+/* . Whenever an execution context is created, a lexical environment is created.
+ Lexical environment is the local memory along with the lexical environment of its parent.
+Lexical as a term means in hierarchy or in sequence. */
+/* 
+The c function lexically inside an a function and a function lexically inside a
+ global space 
+*/
