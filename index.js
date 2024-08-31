@@ -1,21 +1,48 @@
-if (true) {
-  var a = 10;
+// Function Statements
+function a() {
+  console.log("a called");
 }
-console.log(a);
 
-// Output =10
+// function Expression or Function Declaration
+var b = function () {
+  console.log("B called");
+};
 
-/*bcoz in var variable hoisting.when js runs this code it first declare the value
-of a but not give any value a; and when js reaches to if condition if true than the
-a became 10 and after that it will log 10 bcoz the condition is true   */
+// Anonymous Function -> function with no name
+// function(){
 
-/* 
-var a; // Declaration is hoisted to the top of the global scope
+// }
 
-if (true) {
-  a = 10; // Assignment remains in its place
+// Named Function Expression
+var c = function xyz() {
+  console.log("c Called");
+};
+c();
+// Parameter and Argument
+function d(params) {
+  console.log(params);
 }
-console.log(a); // Prints 10
-*/
+d(1); //Argument
 
-//above code representing how it will run behind the scene
+// First Class Function
+// ability to use function as a value is known as first class function
+// Example 1 :
+function e() {
+  return function eChild(params) {};
+}
+
+// Example 2
+function fPara() {
+  console.log("hello from fPara");
+}
+
+function f(fun) {
+  return fun;
+}
+f(fPara);
+
+// Arrow Function
+const arrow = () => {
+  console.log("Hello from Arrow Function");
+};
+arrow();
