@@ -8,30 +8,14 @@ const users = [
   { firstName: "Riley", lastName: "Davis", age: 29 },
 ];
 
-const names = users.map((user) => {
-  return user.firstName + " " + user.lastName;
-});
+// get firstName whos age is less than 28 with reduce function
+// ["Alex","jordan"] like this
 
-// console.log(names);
-
-// 2 count age like  {22:2}
-const age = users.reduce(function (acc, curr) {
-  if (acc[curr.age]) {
-    acc[curr.age] = ++acc[curr.age];
-  } else {
-    acc[curr.age] = 1;
+const ageFilter = users.reduce((acc, curr) => {
+  if (curr.age < 28) {
+    acc.push(curr.firstName);
   }
   return acc;
-}, {});
+}, []);
 
-console.log(age);
-
-// get firstName whos age is less than 28
-
-const filteredName = users
-  .filter((user) => {
-    return user.age < 28;
-  })
-  .map((user) => user.firstName);
-
-console.log(filteredName);
+console.log(ageFilter);
