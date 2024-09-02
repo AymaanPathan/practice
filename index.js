@@ -1,17 +1,29 @@
-console.log("Start");
+// Map
 
-function cb() {
-  console.log("Timer");
-}
+//1. double the value of [5,1,3,2,6]
 
-setTimeout(cb, 1000);
+const arr = [5, 1, 3, 2, 6];
 
-let start = new Date().getTime();
-let end = new Date().getTime() + 5000;
-let count = 0;
-while (start <= end) {
-  count++;
-  start = new Date().getTime();
-}
+const doubledArray = arr.map(function (num) {
+  return num * 2;
+});
 
-console.log(count);
+console.log(doubledArray);
+
+//2. Triple the value of [5,1,3,2,6]
+
+const arr1 = [5, 1, 3, 2, 6];
+
+const TripledArray = arr.map(function (num) {
+  return num * 3;
+});
+console.log(TripledArray);
+
+//3. binary of [5,1,3,2,6]
+
+const arr3 = [5, 1, 3, 2, 6];
+const binaryArray = arr3.map(function (num) {
+  return num.toString(2);
+});
+
+console.log(binaryArray);
