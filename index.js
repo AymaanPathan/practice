@@ -1,40 +1,37 @@
-// Reduce
+// 1 get full names
+const users = [
+  { firstName: "Alex", lastName: "Smith", age: 25 },
+  { firstName: "Jordan", lastName: "Doe", age: 30 },
+  { firstName: "Taylor", lastName: "Johnson", age: 27 },
+  { firstName: "Morgan", lastName: "Lee", age: 28 },
+  { firstName: "Casey", lastName: "Brown", age: 26 },
+  { firstName: "Riley", lastName: "Davis", age: 29 },
+];
 
-//1. sum of all [5,1,3,2,6]
+const names = users.map((user) => {
+  return user.firstName + " " + user.lastName;
+});
 
-const arr = [5, 1, 3, 2, 6];
-const sum = arr.reduce((acc, curr) => {
-  return acc + curr;
-}, 0);
+// console.log(names);
 
-// console.log(sum);
-
-// 0+5 = 5
-// 5+1 =6
-// 6+3 = 9
-// 9+2=11
-// 11+6 = 17 will be output
-
-// 2 find max [with for loop]
-function findMax() {
-  let max = 0;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > max) {
-      max = arr[i];
-    }
-  }
-  return max;
-}
-
-console.log(findMax());
-
-// with reduce
-
-const maxNum = arr.reduce((acc, curr) => {
-  if (acc < curr) {
-    acc = curr;
+// 2 count age like  {22:2}
+const age = users.reduce(function (acc, curr) {
+  if (acc[curr.age]) {
+    acc[curr.age] = ++acc[curr.age];
+  } else {
+    acc[curr.age] = 1;
   }
   return acc;
-}, 0);
+}, {});
 
-console.log(maxNum);
+console.log(age);
+
+// get firstName whos age is less than 28
+
+const filteredName = users
+  .filter((user) => {
+    return user.age < 28;
+  })
+  .map((user) => user.firstName);
+
+console.log(filteredName);
