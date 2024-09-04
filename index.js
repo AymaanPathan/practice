@@ -11,4 +11,6 @@ const promise3 = new Promise((resolve, reject) => {
   setTimeout(() => resolve("Promise 3 success"), 2000);
 });
 
-Promise.all([promise1, promise2, promise3]).then((data) => console.log(data));
+Promise.allSettled([promise1, promise2, promise3]).then((data) =>
+  console.log(data)
+);
