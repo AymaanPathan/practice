@@ -1,12 +1,14 @@
-const promise1 = new Promise((resolve, reject) => {
-  setTimeout(() => resolve("Promise 1 success"), 2000);
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("promise resolved");
+  }, 5000);
 });
 
-const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => resolve("Promise 2 success"), 3000);
-});
+async function a() {
+  console.log("hello world"); // this will print instantly
+  const data = await p1;
+  console.log("hello"); // this will take 5 second and js engine will waiting for promise
+  console.log(data); // this will also take 5 second prints after hello
+}
 
-const promise3 = new Promise((resolve, reject) => {
-  setTimeout(() => reject("Promise 3 success"), 1000);
-});
-Promise.any([promise1, promise2, promise3]).then((data) => console.log(data));
+a();
