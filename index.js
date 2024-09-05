@@ -1,10 +1,15 @@
 "use strict";
 
-const obj = {
-  a: 10,
-  b: function () {
-    console.log(this);
+// call method [here over riding the value of this.name]
+const student1 = {
+  name: "Aymaan",
+  printName: function () {
+    console.log(this.name);
   },
 };
 
-obj.b();
+const student2 = {
+  name: "bob",
+};
+
+student1.printName.call(student2);
