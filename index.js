@@ -1,15 +1,13 @@
 "use strict";
 
-// call method [here over riding the value of this.name]
-const student1 = {
-  name: "Aymaan",
-  printName: function () {
-    console.log(this.name);
+const obj = {
+  a: 10,
+  x: function () {
+    const y = () => {
+      console.log(this); // this keyword will not see arrow function they just console.log(this) like they are in function x
+    };
+    y();
   },
 };
 
-const student2 = {
-  name: "bob",
-};
-
-student1.printName.call(student2);
+obj.x();
