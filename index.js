@@ -1,13 +1,24 @@
 "use strict";
 
-const obj = {
-  a: 10,
-  x: function () {
-    const y = () => {
-      console.log(this); // this keyword will not see arrow function they just console.log(this) like they are in function x
-    };
-    y();
-  },
+let person = {
+  firstName: "Aymaan",
+  lastName: "Pathan",
+  // printFullName: function () {
+  //   console.log(this.firstName + this.lastName);
+  // },
 };
 
-obj.x();
+let printFullName = function (city) {
+  //we can also pass the parameter also
+  console.log(this.firstName + " " + this.lastName + " " + "from" + " " + city);
+};
+
+let person2 = {
+  firstName: "job",
+  lastName: "clinton",
+};
+
+//  function borrowing
+// person.printFullName.call(person2);
+
+printFullName.call(person2, "india"); // this is how we can set a value in argument
