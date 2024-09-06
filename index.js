@@ -19,6 +19,8 @@ let person2 = {
 };
 
 //  function borrowing
-// person.printFullName.call(person2);
 
-printFullName.call(person2, "india"); // this is how we can set a value in argument
+printFullName.apply(person2, ["india"]); // this is how we can set a value in argument in apply
+
+// the only difference in call and apply is how we pass and argument in call we can
+// pass with comma seperated and in apply witg array list
