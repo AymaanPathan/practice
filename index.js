@@ -1,15 +1,17 @@
-// Maximum in array
+// reverse array
+function reverse(arr) {
+  let start = 0;
+  let end = arr.length - 1;
+  while (start <= end) {
+    let temp = arr[start];
+    arr[start] = arr[end];
+    arr[end] = temp;
 
-function findMin(nums) {
-  let min = nums[0];
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] < min) {
-      min = nums[i];
-    }
+    start++;
+    end--;
   }
-  return min;
 }
 
-const arr = [3, 1, 4, 1, 5, 9, 2];
+const arr = [1, 2, 3, 4, 5];
 
-console.log(findMax(arr));
+console.log(reverse(arr));
