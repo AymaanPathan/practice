@@ -1,23 +1,15 @@
-"use strict";
+// Maximum in array
 
-let person = {
-  firstName: "Aymaan",
-  lastName: "Pathan",
-  // printFullName: function () {
-  //   console.log(this.firstName + this.lastName);
-  // },
-};
+function findMin(nums) {
+  let min = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] < min) {
+      min = nums[i];
+    }
+  }
+  return min;
+}
 
-let printFullName = function (city) {
-  //we can also pass the parameter also
-  console.log(this.firstName + " " + this.lastName + " " + "from" + " " + city);
-};
+const arr = [3, 1, 4, 1, 5, 9, 2];
 
-let person2 = {
-  firstName: "job",
-  lastName: "clinton",
-};
-
-//  bind method gives you the copy of that method which can be invoke later
-const print = printFullName.bind(person2, "india");
-print();
+console.log(findMax(arr));
