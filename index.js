@@ -1,25 +1,19 @@
-// Rotate
-
-function reverse(arr, start, end) {
-  while (start < end) {
-    let temp = arr[start];
-    arr[start] = arr[end];
-    arr[end] = temp;
-    start++;
-    end--;
+function getMinMax(arr) {
+  let max = arr[0];
+  let min = arr[0];
+  for (let i = 0; i < arr.length; i++) {
+    if (max < arr[i]) {
+      max = arr[i];
+    }
   }
+  for (let i = 0; i < arr.length; i++) {
+    if (min > arr[i]) {
+      min = arr[i];
+    }
+  }
+  return [min, max];
 }
 
-function rotate(arr, k) {
-  k = k % arr.length;
-  reverse(arr, 0, arr.length - 1);
-  reverse(arr, 0, k - 1);
-  reverse(arr, k, arr.length - 1);
-}
-
-const arr = [1, 2, 3, 4, 5];
-const k = 2;
-
-rotate(arr, k);
-
-console.log(arr);
+const arr = [3, 2, 1, 56, 10000, 167];
+getMinMax(arr);
+console.log(getMinMax(arr));
