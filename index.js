@@ -1,13 +1,6 @@
-//  Spread operator -> needs iterable like array or string
-// function sum(a, b, c) {
-//   return a + b + c;
-// }
+let ritikRuns = { name: "Ritik", runs: 0 };
+let otherRuns = { ...ritikRuns };
+otherRuns.runs = 90;
 
-// const numbers = [1, 2, 3];
-// console.log(sum(...numbers));
-
-const arr = [1, 2, 3, 4];
-const sum = [...arr].reduce((acc, curr) => {
-  return acc + curr;
-}, 0);
-console.log(sum);
+console.log(ritikRuns);
+console.log(otherRuns);
