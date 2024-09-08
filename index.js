@@ -1,7 +1,4 @@
-// Spread Operator
-function addNumber(a, b, c) {
-  return a + b;
-}
-
-const arr = [2, 3];
-console.log(addNumber(...arr));
+// Rest Operator
+const arr = [3, 5, 8, 9, 12, 14];
+const [a, , , ...nums] = arr;
+console.log(a, nums);
