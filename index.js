@@ -1,23 +1,21 @@
-// Object
-const user = {
-  name: "John", // adding the data
-  age: 12,
-  isDeveloper: true,
-  Info: function () {
-    return this.city;
-  },
-};
+// find second largest in array
 
-// user.Info = () => {
-//   // update the data
+function secondLargest(nums) {
+  let largest = nums[0];
+  let secondLargest = nums[nums.length - 1];
+  for (let i = 0; i < nums.length; i++) {
+    if (largest < nums[i]) {
+      largest = nums[i];
+    }
+  }
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > secondLargest && nums[i] != largest) {
+      secondLargest = nums[i];
+    }
+  }
 
-//   return "hello";
-// };
+  return secondLargest;
+}
 
-// Hoisting in object
-user.city = "L.A";
-
-// Spacing in key
-user["pin code"] = "1098";
-console.log(user["pin code"]);
-// delete user.Info; // deletion of object data
+const arr = [65, 3, 1, 56, 2, 1];
+console.log(secondLargest(arr));
