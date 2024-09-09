@@ -1,11 +1,23 @@
-let ritikRuns = {
-  name: "Ritik",
-  runs: 0,
-  ball: { type: "leather" },
-  time: { day: "Wednesday" },
+// Object
+const user = {
+  name: "John", // adding the data
+  age: 12,
+  isDeveloper: true,
+  Info: function () {
+    return this.city;
+  },
 };
-let otherRuns = { ...ritikRuns };
-otherRuns.ball.time = "tuesday";
 
-console.log(ritikRuns);
-console.log(otherRuns);
+// user.Info = () => {
+//   // update the data
+
+//   return "hello";
+// };
+
+// Hoisting in object
+user.city = "L.A";
+
+// Spacing in key
+user["pin code"] = "1098";
+console.log(user["pin code"]);
+// delete user.Info; // deletion of object data
