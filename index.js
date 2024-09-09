@@ -2,20 +2,17 @@
 
 function secondLargest(nums) {
   let largest = nums[0];
-  let secondLargest = nums[nums.length - 1];
-  for (let i = 0; i < nums.length; i++) {
-    if (largest < nums[i]) {
+  let sLargest = -1;
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] > largest) {
+      sLargest = largest;
       largest = nums[i];
+    } else if (largest > nums[i] && nums[i] > sLargest) {
+      sLargest = nums[i];
     }
   }
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] > secondLargest && nums[i] != largest) {
-      secondLargest = nums[i];
-    }
-  }
-
-  return secondLargest;
+  return sLargest;
 }
 
-const arr = [65, 3, 1, 56, 2, 1];
+const arr = [65, 13, 65, 1, 26, 2, 1];
 console.log(secondLargest(arr));
