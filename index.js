@@ -1,18 +1,14 @@
-// find second largest in array
-
 function secondLargest(nums) {
-  let largest = nums[0];
-  let sLargest = -1;
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] > largest) {
-      sLargest = largest;
-      largest = nums[i];
-    } else if (largest > nums[i] && nums[i] > sLargest) {
-      sLargest = nums[i];
+  let largest = nums[nums.length - 1];
+  let secondLargest = -1;
+
+  for (let i = nums.length - 2; i >= 0; i--) {
+    if (nums[i] !== largest) {
+      secondLargest = nums[i];
+      break;
     }
   }
-  return sLargest;
+  return secondLargest;
 }
-
-const arr = [65, 13, 65, 1, 26, 2, 1];
+const arr = [1, 2, 3, 4, 5];
 console.log(secondLargest(arr));
