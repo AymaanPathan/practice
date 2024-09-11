@@ -1,12 +1,16 @@
-function occurenceOfNumber(number, arr) {
+var findMaxConsecutiveOnes = function (nums) {
   let count = 0;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === number) {
+  let max = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 1) {
       count++;
+      max = Math.max(max, count);
+    } else {
+      count = 0;
     }
   }
-  return count;
-}
+  return max;
+};
 
-const arr = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 3];
-console.log(occurenceOfNumber(3, arr));
+const nums = [1, 0, 1, 1, 0, 1];
+console.log(findMaxConsecutiveOnes(nums));
