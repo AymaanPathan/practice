@@ -4,13 +4,15 @@
   box-sizing: border-box;
 }
 .main {
-  display: grid;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   height: 100vh;
 }
 
 .centered {
+  position: absolute;
+  top: 50%; /*this will go to top 50 of parent not page*/
+  left: 50%; /*this will go to left 50 of parent not page*/
+  transform: translate(-50%, -50%);
   width: 100px; /* Example width */
   height: 100px; /* Example height */
 }
