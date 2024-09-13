@@ -1,26 +1,15 @@
-var bubbleSort = function (nums) {
-  let n = nums.length;
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < n - i - 1; j++) {
-      if (nums[j] > nums[j + 1]) {
-        let temp = nums[j];
-        nums[j] = nums[j + 1];
-        nums[j + 1] = temp;
+var singleNumber = function (nums) {
+  for (let i = 0; i < nums.length; i++) {
+    let count = 0;
+    for (let j = 0; j < nums.length; j++) {
+      if (nums[j] === nums[i]) {
+        count++;
+      }
+      if (count === 1) {
+        return nums;
       }
     }
   }
-  return nums;
 };
-
-var missingNumber = function (nums) {
-  bubbleSort(nums);
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== i) {
-      return i;
-    }
-  }
-  return nums.length;
-};
-
-const arr = [9, 6, 4, 2, 3, 5, 7, 0, 1]; // 0,1,2,3,4,5,6,7,9
-console.log("Missing Number:", missingNumber(arr));
+const arr = [2, 2, 1];
+console.log(singleNumber(arr));
