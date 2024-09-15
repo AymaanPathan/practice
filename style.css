@@ -1,5 +1,6 @@
-/* a: Inline styles (e.g., <div style="color: red;">) – most specific. [1000]
-b: ID selectors (e.g., #header) [100]
-c: Class selectors (e.g., .container), attribute selectors (e.g., [type="text"]), and pseudo-classes (e.g., :hover) [10]
-d: Type selectors (e.g., div, p) and pseudo-elements (e.g., ::before) [1]
- */
+.container {
+  width: 400px;
+  height: 400px;
+  border: 2px solid red;
+  overflow: hidden;
+}
