@@ -1,9 +1,6 @@
-function a(fun) {
-  fun();
-}
+let a = 10;
 
-function sayHi() {
-  console.log("hello from function b");
+function ab() {
+  console.log(a);
 }
-
-a(sayHi);
+ab();
