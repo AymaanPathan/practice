@@ -1,4 +1,7 @@
-const cartItem = ["Mobile", "purse", "cover", "bike"];
-localStorage.setItem("user", JSON.stringify(cartItem));
-const userCart = localStorage.getItem("user");
-console.log(JSON.parse(userCart));
+console.log("Start");
+
+const blockWhile = 3000;
+const delay = Date.now() + blockWhile;
+while (Date.now() < delay) {}
+
+console.log("End");
