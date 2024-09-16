@@ -1,7 +1,3 @@
-console.log("Start");
-
-const blockWhile = 3000;
-const delay = Date.now() + blockWhile;
-while (Date.now() < delay) {}
-
-console.log("End");
+const arr = [1, 2, 3, 4];
+const maximum = Math.max(...arr);
+console.log(maximum);
