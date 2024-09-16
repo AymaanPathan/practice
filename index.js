@@ -1,6 +1,27 @@
-let a = 10;
+const grandParent = document.querySelector("#grandParent");
+const parent = document.querySelector("#parent");
+const child = document.querySelector("#children");
 
-function ab() {
-  console.log(a);
-}
-ab();
+grandParent.addEventListener(
+  "click",
+  () => {
+    console.log("grandParent Clicked!!!");
+  },
+  false // bubble
+);
+
+parent.addEventListener(
+  "click",
+  () => {
+    console.log("parent Clicked!!!");
+  },
+  false // bubble
+);
+
+child.addEventListener(
+  "click",
+  () => {
+    console.log("child Clicked!!!");
+  },
+  true // capture
+);

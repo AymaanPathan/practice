@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-   <div class="main" style="background-color: black;">
-  <p>First paragraph</p>  <!-- 1st child, 1st p -->
-  <span>First span</span>  <!-- 2nd child -->
-  <p>Second paragraph</p> <!-- 3rd child, 2nd p -->
-  <span>Second span</span> <!-- 4th child -->
-  <p>Third paragraph</p>  <!-- 5th child, 3rd p -->
-</div>
+    <div id="grandParent">
+      <h1>grandParent</h1>
+      <div id="parent">
+        <h1>parent</h1>
+        <div id="children"><h1>children</h1></div>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
 </html>
