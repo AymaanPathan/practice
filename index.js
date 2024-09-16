@@ -1,9 +1,4 @@
-const user = {
-  name: "aymaan",
-  age: 20,
-  job: "software Developer",
-};
-
-localStorage.setItem("user", JSON.stringify(user));
-const userLocal = JSON.parse(localStorage.getItem("user"));
-console.log(userLocal.age);
+const cartItem = ["Mobile", "purse", "cover", "bike"];
+localStorage.setItem("user", JSON.stringify(cartItem));
+const userCart = localStorage.getItem("user");
+console.log(JSON.parse(userCart));
