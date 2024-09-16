@@ -2,26 +2,15 @@ const grandParent = document.querySelector("#grandParent");
 const parent = document.querySelector("#parent");
 const child = document.querySelector("#children");
 
-grandParent.addEventListener(
-  "click",
-  () => {
-    console.log("grandParent Clicked!!!");
-  },
-  false // bubble
-);
+grandParent.addEventListener("click", (e) => {
+  console.log("grandParent Clicked!!!");
+});
 
-parent.addEventListener(
-  "click",
-  () => {
-    console.log("parent Clicked!!!");
-  },
-  false // bubble
-);
+parent.addEventListener("click", (e) => {
+  console.log("parent Clicked!!!");
+  e.stopPropagation(); // after this event it will stop
+});
 
-child.addEventListener(
-  "click",
-  () => {
-    console.log("child Clicked!!!");
-  },
-  true // capture
-);
+child.addEventListener("click", (e) => {
+  console.log("child Clicked!!!");
+});
