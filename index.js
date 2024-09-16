@@ -1,16 +1,9 @@
-const grandParent = document.querySelector("#grandParent");
-const parent = document.querySelector("#parent");
-const child = document.querySelector("#children");
+const user = {
+  name: "aymaan",
+  age: 20,
+  job: "software Developer",
+};
 
-grandParent.addEventListener("click", (e) => {
-  console.log("grandParent Clicked!!!");
-});
-
-parent.addEventListener("click", (e) => {
-  console.log("parent Clicked!!!");
-  e.stopPropagation(); // after this event it will stop
-});
-
-child.addEventListener("click", (e) => {
-  console.log("child Clicked!!!");
-});
+localStorage.setItem("user", JSON.stringify(user));
+const userLocal = JSON.parse(localStorage.getItem("user"));
+console.log(userLocal.age);
