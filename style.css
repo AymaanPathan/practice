@@ -1,25 +1,19 @@
-.main {
-  min-height: 300px;
-  min-width: 300px;
-  border: 2px solid black;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: repeat(4, 1fr); /*Add Four Rows*/
+* {
+  padding: 0;
+  margin: 0;
 }
 
-.box {
-  width: 200px;
-  height: 300px;
+.main {
+  position: relative;
+  height: 100vh;
 }
 
 .box-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: red;
-}
-
-.box-2 {
-  background-color: blue;
-}
-
-.box-3 {
-  background-color: green;
+  width: 200px;
+  height: 200px;
+  float: right;
 }
