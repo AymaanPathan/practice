@@ -2,8 +2,9 @@
   min-height: 300px;
   min-width: 300px;
   border: 2px solid black;
-  display: flex;
-  flex-direction: row; /*Or Column*/
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr); /*Add Four Rows*/
 }
 
 .box {
