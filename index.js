@@ -4,5 +4,6 @@ const user = {
   job: "Software Developer",
 };
 
-const objArray = Object.entries(user);
-console.log(objArray);
+Object.keys(user).forEach((key) => {
+  console.log(key + ":" + " " + user[key]);
+});
