@@ -1,11 +1,10 @@
-const user = {
-  name: "aymaan",
-  partner: { dad: "Abid", mom: "shahin" },
-};
+let RitikRuns = { name: "Ritik", total: 0, ball: { type: "Leather" } };
+let otherRuns = deepCopy(RitikRuns); //shallow copy
+otherRuns.ball.type = "tennis"; //shallow will not work in nested object
 
-// const user2 = { ...user }; // shallow copy
-const user2 = JSON.parse(JSON.stringify(user)); // deep copy
-user2.partner.dad = "bob";
+console.log(RitikRuns);
+console.log(otherRuns);
 
-console.log(user);
-console.log(user2);
+function deepCopy(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
