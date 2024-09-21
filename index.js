@@ -1,14 +1,19 @@
-var myObject = {
-  foo: "bar",
-  func: function () {
-    var self = this;
-    console.log("Outer Func: this.foo = " + this.foo); //bar
-    console.log("Outer Func: self.foo = " + self.foo); //bar
-    (function () {
-      console.log("inner func: this.foo =" + this.foo); // undefined
-      console.log("inner func: self.foo =" + self.foo); //bar
-    })();
-  },
-};
+function convertNumbersToWords(numbers) {
+  const numberWords = [
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+  ];
 
-myObject.func();
+  return numbers.map((num) => numberWords[num]).join("_");
+}
+
+const arr = [1, 2, 3];
+console.log(convertNumbersToWords(arr));
