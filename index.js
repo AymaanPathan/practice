@@ -1,17 +1,30 @@
-//  im best => mi tseb
+function thirdLargest(stringArray) {
+  let largest = "";
+  let secondLargest = "";
+  let thirdLargest = "";
 
-function reverseWord(sentence) {
-  return sentence
-    .split(" ")
-    .map((word) => {
-      let reverse = "";
-      for (let i = word.length - 1; i >= 0; i--) {
-        reverse += word[i];
-      }
-      return reverse;
-    })
-    .join(" ");
+  for (let i = 0; i < stringArray.length; i++) {
+    let currentString = stringArray[i];
+
+    if (currentString.length > largest.length) {
+      thirdLargest = secondLargest;
+      secondLargest = largest;
+      largest = currentString;
+    } else if (
+      currentString.length > secondLargest.length &&
+      currentString !== largest
+    ) {
+      thirdLargest = secondLargest;
+      secondLargest = currentString;
+    } else if (
+      currentString.length > thirdLargest.length &&
+      currentString !== largest &&
+      currentString !== secondLargest
+    ) {
+      thirdLargest = currentString;
+    }
+  }
+  return [largest, secondLargest, thirdLargest];
 }
-
-let sentence = "my name is aymaan";
-console.log(reverseWord(sentence));
+const arr = ["aa", "aaa", "a", "aaaaaaa"];
+console.log(thirdLargest(arr));
