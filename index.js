@@ -1,19 +1,17 @@
-function convertNumbersToWords(numbers) {
-  const numberWords = [
-    "zero",
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-  ];
+//  im best => mi tseb
 
-  return numbers.map((num) => numberWords[num]).join("_");
+function reverseWord(sentence) {
+  return sentence
+    .split(" ")
+    .map((word) => {
+      let reverse = "";
+      for (let i = word.length - 1; i >= 0; i--) {
+        reverse += word[i];
+      }
+      return reverse;
+    })
+    .join(" ");
 }
 
-const arr = [1, 2, 3];
-console.log(convertNumbersToWords(arr));
+let sentence = "my name is aymaan";
+console.log(reverseWord(sentence));
