@@ -1,5 +1,8 @@
-const arr1 = [1, 2, 3];
-const arr2 = [4, 5, 6];
+const user = {
+  name: "aymaan",
+};
 
-const arrNew = [...arr1, ...arr2];
-console.log(arrNew);
+const user2 = user;
+user2.name = "bob";
+
+console.log(user);
