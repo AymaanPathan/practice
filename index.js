@@ -1,10 +1,14 @@
-let RitikRuns = { name: "Ritik", total: 0, ball: { type: "Leather" } };
-let otherRuns = deepCopy(RitikRuns); //shallow copy
-otherRuns.ball.type = "tennis"; //shallow will not work in nested object
+var myObject = {
+  foo: "bar",
+  func: function () {
+    var self = this;
+    console.log("Outer Func: this.foo = " + this.foo); //bar
+    console.log("Outer Func: self.foo = " + self.foo); //bar
+    (function () {
+      console.log("inner func: this.foo =" + this.foo); // undefined
+      console.log("inner func: self.foo =" + self.foo); //bar
+    })();
+  },
+};
 
-console.log(RitikRuns);
-console.log(otherRuns);
-
-function deepCopy(obj) {
-  return JSON.parse(JSON.stringify(obj));
-}
+myObject.func();
