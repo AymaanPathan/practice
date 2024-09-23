@@ -1,30 +1,20 @@
-function thirdLargest(stringArray) {
-  let largest = "";
-  let secondLargest = "";
-  let thirdLargest = "";
+// [1,0,1,1,0,1]
+// Output: 3;
 
-  for (let i = 0; i < stringArray.length; i++) {
-    let currentString = stringArray[i];
+function maxOne(nums) {
+  let max = 0;
+  let count = 0;
 
-    if (currentString.length > largest.length) {
-      thirdLargest = secondLargest;
-      secondLargest = largest;
-      largest = currentString;
-    } else if (
-      currentString.length > secondLargest.length &&
-      currentString !== largest
-    ) {
-      thirdLargest = secondLargest;
-      secondLargest = currentString;
-    } else if (
-      currentString.length > thirdLargest.length &&
-      currentString !== largest &&
-      currentString !== secondLargest
-    ) {
-      thirdLargest = currentString;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 1) {
+      count++;
+      max = Math.max(max, count);
+    } else {
+      count = 0;
     }
   }
-  return [largest, secondLargest, thirdLargest];
+  return max;
 }
-const arr = ["aa", "aaa", "a", "aaaaaaa"];
-console.log(thirdLargest(arr));
+
+const arr = [1, 1, 0, 1, 1, 1];
+console.log(maxOne(arr));
