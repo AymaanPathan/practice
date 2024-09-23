@@ -1,21 +1,23 @@
-const obj = {
-  name: {
-    fist: "Aymaan",
-    Last: "Pathan",
-  },
-  number: {
-    first: 90849849,
-    second: 985098349,
-  },
-  passion: "coding",
+const stringToNumbers = (numbers) => {
+  const numberWords = [
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+  ];
+  return numbers.map((num) => {
+    return num
+      .toString()
+      .split("")
+      .map((num) => numberWords[num])
+      .join(" ");
+  });
 };
-
-const keys = Object.entries(obj).forEach(([key, val]) => {
-  if (typeof val == "object") {
-    Object.entries(val).forEach(([key, val]) => {
-      console.log(`${key} : ${val} `);
-    });
-  } else {
-    console.log(`${key} : ${val} `);
-  }
-});
+const arr = [12, 21];
+console.log(stringToNumbers(arr));
