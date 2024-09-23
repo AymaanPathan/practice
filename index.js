@@ -16,7 +16,7 @@ const stringToNumbers = (numbers) => {
       .toString()
       .split("")
       .map((num) => numberWords[num])
-      .join(" ");
+      .join("-");
   });
 };
 const arr = [12, 21];
