@@ -1,16 +1,22 @@
-function sumAllMatrix(nums) {
-  let sum = 0;
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = 0; j < nums[i].length; j++) {
-      sum += nums[i][j];
+function binarySearch(nums, target) {
+  let start = 0;
+  let end = nums.length - 1;
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    if (nums[mid] == target) {
+      return mid;
+    }
+    if (target > nums[mid]) {
+      start = mid + 1;
+    }
+    if (target < nums[mid]) {
+      end = mid - 1;
     }
   }
-  return sum;
+  return -1;
 }
-let arr = [
-  [3, 12, 9],
-  [5, 2, 89],
-  [90, 45, 22],
-];
-const target = 91;
-console.log(sumAllMatrix(arr));
+
+const sortedArray = [1, 2, 3, 4, 5];
+const target = 7;
+const result = binarySearch(sortedArray, target);
+console.log(result);
