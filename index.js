@@ -3,20 +3,17 @@ function binarySearch(nums, target) {
   let end = nums.length - 1;
   while (start <= end) {
     let mid = Math.floor((start + end) / 2);
-    if (nums[mid] == target) {
+    if (nums[mid] === target) {
       return mid;
     }
     if (target > nums[mid]) {
       start = mid + 1;
-    }
-    if (target < nums[mid]) {
+    } else {
       end = mid - 1;
     }
   }
   return -1;
 }
-
-const sortedArray = [1, 2, 3, 4, 5];
-const target = 7;
-const result = binarySearch(sortedArray, target);
-console.log(result);
+const arr = [1, 2, 3, 4, 5, 6, 7, 8];
+const target = 4;
+console.log(binarySearch(arr, target));
