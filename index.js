@@ -1,19 +1,9 @@
-function binarySearch(nums, target) {
-  let start = 0;
-  let end = nums.length - 1;
-  while (start <= end) {
-    let mid = Math.floor((start + end) / 2);
-    if (nums[mid] === target) {
-      return mid;
-    }
-    if (target > nums[mid]) {
-      start = mid + 1;
-    } else {
-      end = mid - 1;
-    }
-  }
-  return -1;
+function capitalFirst(sentence) {
+  return sentence
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 }
-const arr = [1, 2, 3, 4, 5, 6, 7, 8];
-const target = 4;
-console.log(binarySearch(arr, target));
+
+const sentence = "hello world from javascript";
+console.log(capitalFirst(sentence));
