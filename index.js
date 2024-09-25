@@ -1,12 +1,11 @@
-function searchLinear(nums, target) {
+function sumAllMatrix(nums) {
+  let sum = 0;
   for (let i = 0; i < nums.length; i++) {
     for (let j = 0; j < nums[i].length; j++) {
-      if (nums[i][j] === target) {
-        return true;
-      }
+      sum += nums[i][j];
     }
   }
-  return false;
+  return sum;
 }
 let arr = [
   [3, 12, 9],
@@ -14,4 +13,4 @@ let arr = [
   [90, 45, 22],
 ];
 const target = 91;
-console.log(searchLinear(arr, target));
+console.log(sumAllMatrix(arr));
