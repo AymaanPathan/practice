@@ -13,7 +13,7 @@ function ceiling(nums, target) {
       end = mid - 1;
     }
   }
-  return nums[start];
+  return nums[end];
 }
 const arr = [2, 3, 5, 9, 14, 16, 18];
-console.log(ceiling(arr, 17));
+console.log(ceiling(arr, 15));
