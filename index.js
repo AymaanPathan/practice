@@ -1,16 +1,16 @@
-var secondLargest = function (arr) {
-  let max = -Infinity;
-  let secondLargest = -Infinity;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > max) {
-      secondLargest = max;
-      max = arr[i];
-    } else if (arr[i] > secondLargest && arr[i] !== max) {
-      secondLargest = arr[i];
+var peakIndexInMountainArray = function (arr) {
+  let start = 0;
+  let end = arr.length - 1;
+  while (start < end) {
+    let mid = Math.floor((start + end) / 2);
+    if (arr[mid] > arr[mid + 1]) {
+      end = mid;
+    } else {
+      start = mid + 1;
     }
   }
-  return secondLargest;
+  return start;
 };
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-console.log(secondLargest(arr));
+const arr = [0, 1, 0];
+console.log(peakIndexInMountainArray(arr));
