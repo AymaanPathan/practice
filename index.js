@@ -1,16 +1,16 @@
-function phoneNumberDirectory(phone) {
-  const phoneMap = new Map();
-  for (let num of phone) {
-    const [name, phone] = num.split(":");
-    phoneMap.set(name, phone);
+var secondLargest = function (arr) {
+  let max = -Infinity;
+  let secondLargest = -Infinity;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > max) {
+      secondLargest = max;
+      max = arr[i];
+    } else if (arr[i] > secondLargest && arr[i] !== max) {
+      secondLargest = arr[i];
+    }
   }
-  return phoneMap;
-}
+  return secondLargest;
+};
 
-console.log(
-  phoneNumberDirectory([
-    "ashish:9988778877",
-    "rash:7768833445",
-    "abc:234343454545",
-  ])
-);
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.log(secondLargest(arr));
