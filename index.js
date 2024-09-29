@@ -1,16 +1,19 @@
-var peakIndexInMountainArray = function (arr) {
+function binarySearch(nums, target) {
   let start = 0;
-  let end = arr.length - 1;
-  while (start < end) {
+  let end = nums.length - 1;
+  while (start <= end) {
     let mid = Math.floor((start + end) / 2);
-    if (arr[mid] > arr[mid + 1]) {
-      end = mid;
-    } else {
+    if (nums[mid] === target) {
+      return mid;
+    }
+    if (target > nums[mid]) {
       start = mid + 1;
+    } else {
+      end = mid - 1;
     }
   }
-  return start;
-};
+  return -1;
+}
 
-const arr = [0, 1, 0];
-console.log(peakIndexInMountainArray(arr));
+const arr = [5];
+console.log(binarySearch(arr, 5));
