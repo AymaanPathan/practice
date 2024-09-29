@@ -1,33 +1,21 @@
-function orderAgnostic(nums, target) {
+function findPeakInRotatedSortedArray(nums) {
   let start = 0;
   let end = nums.length - 1;
-  let isAscending;
-  if (nums[start] < nums[end]) {
-    isAscending = true;
-  } else {
-    isAscending = false;
-  }
   while (start <= end) {
     let mid = Math.floor((start + end) / 2);
-    if (nums[mid] === target) {
+    if (end > mid && nums[mid] > nums[mid + 1]) {
       return mid;
     }
-    if (isAscending) {
-      if (target > nums[mid]) {
-        start = mid + 1;
-      } else {
-        end = mid - 1;
-      }
+    if (start < mid && nums[mid - 1] > nums[mid]) {
+      return mid - 1;
+    }
+    if (nums[start] >= nums[mid]) {
+      end = mid - 1;
     } else {
-      if (target < nums[mid]) {
-        end = mid - 1;
-      } else {
-        start = mid + 1;
-      }
+      start = mid + 1;
     }
   }
-  return -1;
 }
 
-const arr = [1, 2, 3, 4, 5, 6];
-console.log(orderAgnostic(arr, 5));
+const arr = [4, 5, 6, 7, 0, 1, 2];
+console.log(findPeakInRotatedSortedArray(arr));
