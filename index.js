@@ -1,4 +1,4 @@
-function floor(nums, target) {
+function ceiling(nums, target) {
   let start = 0;
   let end = nums.length - 1;
   while (start <= end) {
@@ -12,8 +12,8 @@ function floor(nums, target) {
       end = mid - 1;
     }
   }
-  return nums[end];
+  return nums[start];
 }
 
 const arr = [2, 3, 5, 7, 14, 16, 18];
-console.log(floor(arr, 6));
+console.log(ceiling(arr, 6));
