@@ -15,7 +15,12 @@ function findPeakInRotatedSortedArray(nums) {
       start = mid + 1;
     }
   }
+  return -1;
 }
 
-const arr = [4, 5, 6, 7, 0, 1, 2];
-console.log(findPeakInRotatedSortedArray(arr));
+function countRotation(nums) {
+  let peak = findPeakInRotatedSortedArray(nums);
+  return peak + 1; // if not rotated it will be -1 + 1;
+}
+const arr = [1, 2, 3, 4, 5];
+console.log(countRotation(arr));
