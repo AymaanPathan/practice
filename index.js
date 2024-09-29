@@ -1,4 +1,4 @@
-function binarySearch(nums, target) {
+function floor(nums, target) {
   let start = 0;
   let end = nums.length - 1;
   while (start <= end) {
@@ -12,8 +12,8 @@ function binarySearch(nums, target) {
       end = mid - 1;
     }
   }
-  return -1;
+  return nums[end];
 }
 
-const arr = [5];
-console.log(binarySearch(arr, 5));
+const arr = [2, 3, 5, 7, 14, 16, 18];
+console.log(floor(arr, 6));
