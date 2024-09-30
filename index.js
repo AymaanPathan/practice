@@ -1,26 +1,34 @@
-function findPeakInRotatedSortedArray(nums) {
+var binary = function (nums, target, searchFirst) {
   let start = 0;
   let end = nums.length - 1;
+  let ans = -1;
   while (start <= end) {
     let mid = Math.floor((start + end) / 2);
-    if (end > mid && nums[mid] > nums[mid + 1]) {
-      return mid;
-    }
-    if (start < mid && nums[mid - 1] > nums[mid]) {
-      return mid - 1;
-    }
-    if (nums[start] >= nums[mid]) {
-      end = mid - 1;
+    if (nums[mid] === target) {
+      ans = mid;
+      if (searchFirst) {
+        end = mid - 1;
+      } else {
+        start = mid + 1;
+      }
     } else {
-      start = mid + 1;
+      if (target > nums[mid]) {
+        start = mid + 1;
+      } else {
+        end = mid - 1;
+      }
     }
   }
-  return -1;
-}
+  return ans;
+};
+var searchRange = function (nums, target) {
+  let ansArray = [-1, -1];
+  const first = binary(nums, target, true);
+  const last = binary(nums, target, false);
+  ansArray[0] = first;
+  ansArray[1] = last;
+  return ansArray;
+};
 
-function countRotation(nums) {
-  let peak = findPeakInRotatedSortedArray(nums);
-  return peak + 1; // if not rotated it will be -1 + 1;
-}
-const arr = [1, 2, 3, 4, 5];
-console.log(countRotation(arr));
+const arr = [5, 7, 7, 8, 8, 10];
+console.log(searchRange(arr, 8));
