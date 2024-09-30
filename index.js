@@ -1,34 +1,17 @@
-var binary = function (nums, target, searchFirst) {
+var twoSum = function (numbers, target) {
   let start = 0;
-  let end = nums.length - 1;
-  let ans = -1;
-  while (start <= end) {
-    let mid = Math.floor((start + end) / 2);
-    if (nums[mid] === target) {
-      ans = mid;
-      if (searchFirst) {
-        end = mid - 1;
-      } else {
-        start = mid + 1;
-      }
+  let end = numbers.length - 1;
+  while (start < end) {
+    let sum = numbers[start] + numbers[end];
+    if (sum === target) {
+      return [start + 1, end + 1];
+    } else if (target > sum) {
+      start++;
     } else {
-      if (target > nums[mid]) {
-        start = mid + 1;
-      } else {
-        end = mid - 1;
-      }
+      end--;
     }
   }
-  return ans;
+  return [-1, -1];
 };
-var searchRange = function (nums, target) {
-  let ansArray = [-1, -1];
-  const first = binary(nums, target, true);
-  const last = binary(nums, target, false);
-  ansArray[0] = first;
-  ansArray[1] = last;
-  return ansArray;
-};
-
-const arr = [5, 7, 7, 8, 8, 10];
-console.log(searchRange(arr, 8));
+const arr = [2, 3, 4];
+console.log(twoSum(arr, 6));
