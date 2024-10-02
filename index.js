@@ -1,3 +1,4 @@
 const me = "Aymaan";
-const substring = me.substring(-5, 1); // -5 = 0
-console.log(substring);
+const surname = "pathan";
+const fullName = me.concat(surname);
+console.log(fullName);
