@@ -1,3 +1,2 @@
-const lan = "Java is the best langauge and Java is used for frontend";
-const newstr = lan.replaceAll("Java", "javascript");
-console.log(newstr);
+const me = "Aymaan";
+console.log(me.padEnd(10, "*")); //4 stars because me is 6 letters already init
