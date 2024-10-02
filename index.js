@@ -1,3 +1,3 @@
-const me = "Aymaan";
-console.log(me.startsWith("A"));
-console.log(me.endsWith("n"));
+const me = "Aymaan pathan";
+console.log(me.startsWith("Aymaan"));
+console.log(me.endsWith("pathan"));
