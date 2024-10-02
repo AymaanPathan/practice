@@ -1,8 +1,10 @@
-var isAnagram = function (s, t) {
-  const sArray = s.split("").sort().join("");
-  const tArray = t.split("").sort().join("");
-  return sArray === tArray;
-};
-const s = "anagram";
-const t = "nagaram";
-console.log(isAnagram(s, t));
+function reverse(str) {
+  const strArray = str.split("");
+  let newStr = "";
+  for (let i = strArray.length - 1; i >= 0; i--) {
+    newStr += strArray[i];
+  }
+  return newStr;
+}
+const str = "hello";
+console.log(reverse(str));
