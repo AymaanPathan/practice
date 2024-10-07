@@ -1,25 +1,14 @@
-function isAnagram(s, t) {
-  if (s.length !== t.length) {
-    return false;
-  }
-  let count = {};
-  for (let i = 0; i < s.length; i++) {
-    let letter = s[i];
-    if (!count[letter]) {
-      count[letter] = 1;
+function countOccurence(nums) {
+  let map = {};
+  for (let i = 0; i < nums.length; i++) {
+    let number = nums[i];
+    if (!map[number]) {
+      map[number] = 1;
     } else {
-      count[letter]++;
+      map[number]++;
     }
   }
-  for (let j = 0; j < t.length; j++) {
-    let letter = t[j];
-    if (!count[letter]) {
-      return false;
-    }
-    count[letter]--;
-  }
-  return true;
+  return map;
 }
-const s = "hello";
-const l = "hello";
-console.log(isAnagram(s, l));
+const arr = [1, 2, 3, 4, 1, 2, 3, 3];
+console.log(countOccurence(arr));
