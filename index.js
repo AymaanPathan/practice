@@ -1,20 +1,14 @@
-var rotateString = function (s, goal) {
-  if (s.length !== goal.length) return false;
-
-  for (let i = 0; i < s.length; i++) {
-    let rotateStr = "";
-    for (let j = i; j < s.length; j++) {
-      rotateStr += s[j];
-    }
-    for (let k = 0; k < i; k++) {
-      rotateStr += s[k];
-    }
-    if (rotateStr === goal) {
-      return true;
+var longestCommonPrefix = function (strs) {
+  strs.sort();
+  let prefixStr = "";
+  let start = strs[0];
+  let end = strs[strs.length - 1];
+  for (let i = 0; i < strs.length; i++) {
+    if (start[i] === end[i]) {
+      prefixStr += start[i];
     }
   }
-  return false;
+  return prefixStr;
 };
-const s = "abcde";
-const goal = "cdeab";
-console.log(rotateString(s, goal));
+const strs = ["flower", "flow", "flight"];
+console.log(longestCommonPrefix(strs));
