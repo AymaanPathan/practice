@@ -1,26 +1,23 @@
-var isAnagram = function (s, t) {
-  if (s.length !== t.length) {
-    return false;
-  }
+var romanToInt = function (s) {
+  const map = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+  let total = 0;
 
-  let map = {};
   for (let i = 0; i < s.length; i++) {
-    let letter = s[i];
-    if (!map[letter]) {
-      map[letter] = 1;
+    if (map[s[i]] >= map[s[i + 1]] || i === s.length - 1) {
+      total = total + map[s[i]];
     } else {
-      map[letter]++;
+      total = total - map[s[i]];
     }
   }
-  for (let i = 0; i < t.length; i++) {
-    let letter = t[i];
-    if (!map[letter]) {
-      return false;
-    }
-    map[letter]--;
-  }
-  return true;
+  return total;
 };
-const s = "anagram";
-const t = "nagaram";
-console.log(isAnagram(s, t));
+const s = "III";
+console.log(romanToInt(s));
