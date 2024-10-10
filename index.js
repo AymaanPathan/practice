@@ -1,14 +1,13 @@
-var reverseWords = function (s) {
-  return s
-    .split(" ")
-    .map((word) => {
-      let str = "";
-      for (let i = word.length - 1; i >= 0; i--) {
-        str += word[i];
-      }
-      return str;
-    })
-    .join(" ");
+var numJewelsInStones = function (jewels, stones) {
+  let count = 0;
+  for (let i = 0; i < stones.length; i++) {
+    let word = stones[i];
+    if (jewels.includes(word)) {
+      count++;
+    }
+  }
+  return count;
 };
-const s = "Let's take LeetCode contest";
-console.log(reverseWords(s));
+const jewels = "aA";
+const stones = "aAAbbbb";
+console.log(numJewelsInStones(jewels, stones));
