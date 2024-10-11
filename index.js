@@ -1,12 +1,13 @@
 var strStr = function (haystack, needle) {
-  if (needle === "") return 0;
-  for (let i = 0; i < haystack.length - needle.length; i++) {
-    if (haystack.slice(0, needle.length) === needle) {
+  if (haystack.length < needle.length) return -1;
+  for (let i = 0; i <= haystack.length - needle.length; i++) {
+    if (haystack.substr(i, i + needle.length) === needle) {
       return i;
     }
   }
   return -1;
 };
-const haystack = "sadbutsad";
-const needle = "sad";
+
+const haystack = "abc";
+const needle = "c";
 console.log(strStr(haystack, needle));
