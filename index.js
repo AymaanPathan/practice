@@ -1,13 +1,12 @@
-var numJewelsInStones = function (jewels, stones) {
-  let count = 0;
-  for (let i = 0; i < stones.length; i++) {
-    let word = stones[i];
-    if (jewels.includes(word)) {
-      count++;
+var strStr = function (haystack, needle) {
+  if (needle === "") return 0;
+  for (let i = 0; i < haystack.length - needle.length; i++) {
+    if (haystack.slice(0, needle.length) === needle) {
+      return i;
     }
   }
-  return count;
+  return -1;
 };
-const jewels = "aA";
-const stones = "aAAbbbb";
-console.log(numJewelsInStones(jewels, stones));
+const haystack = "sadbutsad";
+const needle = "sad";
+console.log(strStr(haystack, needle));
