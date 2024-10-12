@@ -1,15 +1,29 @@
-var capitalizeTitle = function (title) {
-  return title
-    .split(" ")
-    .map((word) => {
-      if (word.length < 3) {
-        return word.toLowerCase();
-      } else {
-        return word[0].toUpperCase() + word.slice(1).toLowerCase();
-      }
-    })
-    .join(" ");
+var detectCapitalUse = function (word) {
+  let endLetter = word[word.length - 1];
+  if (word === word.toUpperCase()) {
+    // check if All Char in  word is uppercase or not
+    return true;
+  }
+
+  if (word === word.toLowerCase()) {
+    // check if All Char in  word is lowercase or not
+    return true;
+  }
+  if (endLetter === endLetter.toUpperCase()) {
+    // check if Last Char in  word is uppercase or not
+    return false;
+  }
+
+  if (
+    // check if First Char in  word is uppercase and all other character is loweCase
+    word[0] === word[0].toUpperCase() &&
+    word.slice(1) === word.slice(1).toLowerCase()
+  ) {
+    return true;
+  }
+  return false;
 };
 
-const title = "i lOve leetcode";
-console.log(capitalizeTitle(title));
+const word = "FFFFFFFFFFFFFFFFFFFFf";
+
+console.log(detectCapitalUse(word));
