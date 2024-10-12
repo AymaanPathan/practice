@@ -1,29 +1,24 @@
-var detectCapitalUse = function (word) {
-  let endLetter = word[word.length - 1];
-  if (word === word.toUpperCase()) {
-    // check if All Char in  word is uppercase or not
-    return true;
+var canConstruct = function (ransomNote, magazine) {
+  let mapMagazine = {};
+  for (let i = 0; i < magazine.length; i++) {
+    let letter = magazine[i];
+    if (!mapMagazine[letter]) {
+      mapMagazine[letter] = 1;
+    } else {
+      mapMagazine[letter]++;
+    }
+  }
+  for (let i = 0; i < ransomNote.length; i++) {
+    let ransomNoteLetter = ransomNote[i];
+    if (!mapMagazine[ransomNoteLetter]) {
+      return mapMagazine;
+    }
+    mapMagazine[ransomNoteLetter]--;
   }
 
-  if (word === word.toLowerCase()) {
-    // check if All Char in  word is lowercase or not
-    return true;
-  }
-  if (endLetter === endLetter.toUpperCase()) {
-    // check if Last Char in  word is uppercase or not
-    return false;
-  }
-
-  if (
-    // check if First Char in  word is uppercase and all other character is loweCase
-    word[0] === word[0].toUpperCase() &&
-    word.slice(1) === word.slice(1).toLowerCase()
-  ) {
-    return true;
-  }
-  return false;
+  return true;
 };
 
-const word = "FFFFFFFFFFFFFFFFFFFFf";
-
-console.log(detectCapitalUse(word));
+const ransomNote = "aa";
+const magazine = "ab";
+console.log(canConstruct(ransomNote, magazine));
