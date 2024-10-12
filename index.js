@@ -1,24 +1,15 @@
-var canConstruct = function (ransomNote, magazine) {
-  let mapMagazine = {};
-  for (let i = 0; i < magazine.length; i++) {
-    let letter = magazine[i];
-    if (!mapMagazine[letter]) {
-      mapMagazine[letter] = 1;
-    } else {
-      mapMagazine[letter]++;
-    }
+var arrayStringsAreEqual = function (word1, word2) {
+  let word1Str = "";
+  let word2Str = "";
+  for (let i = 0; i < word1.length; i++) {
+    word1Str += word1[i];
   }
-  for (let i = 0; i < ransomNote.length; i++) {
-    let ransomNoteLetter = ransomNote[i];
-    if (!mapMagazine[ransomNoteLetter]) {
-      return mapMagazine;
-    }
-    mapMagazine[ransomNoteLetter]--;
+  for (let i = 0; i < word2.length; i++) {
+    word2Str += word2[i];
   }
-
-  return true;
+  return word1Str === word2Str;
 };
 
-const ransomNote = "aa";
-const magazine = "ab";
-console.log(canConstruct(ransomNote, magazine));
+const word1 = ["ab", "c"];
+const word2 = ["a", "bc"];
+console.log(arrayStringsAreEqual(word1, word2));
