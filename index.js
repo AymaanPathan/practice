@@ -1,15 +1,15 @@
-function capitalEveryOtherLetter(str) {
-  let newStr = "";
-  for (let i = 0; i < str.length; i++) {
-    let word = str[i];
-    if (i % 2 === 0) {
-      newStr += word.toUpperCase();
-    } else {
-      newStr += word.toLowerCase();
-    }
-  }
-  return newStr;
-}
-const str = "HELLO";
-console.log(capitalEveryOtherLetter(str));
-// hello => HeLlO
+var capitalizeTitle = function (title) {
+  return title
+    .split(" ")
+    .map((word) => {
+      if (word.length < 3) {
+        return word.toLowerCase();
+      } else {
+        return word[0].toUpperCase() + word.slice(1).toLowerCase();
+      }
+    })
+    .join(" ");
+};
+
+const title = "i lOve leetcode";
+console.log(capitalizeTitle(title));
