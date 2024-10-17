@@ -1,32 +1,19 @@
-var findTheDifference = function (s, t) {
-  let map = {};
-  for (let i = 0; i < s.length; i++) {
-    let num = s[i];
-    if (!map[num]) {
-      map[num] = 1;
+function findDuplicate(nums) {
+  let freq = {};
+  let duplicatesArr = [];
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    if (!freq[num]) {
+      freq[num] = 1;
     } else {
-      map[num]++;
+      freq[num]++;
+    }
+    if (freq[num] === 2) {
+      duplicatesArr.push(num);
     }
   }
-  for (let j = 0; j < t.length; j++) {
-    let tNum = t[j];
-    if (!map[tNum]) {
-      return tNum;
-    }
-  }
-  for (let j = 0; j < t.length; j++) {
-    let tNum = t[j];
-    if (!map[tNum]) {
-      return tNum;
-    } else {
-      map[tNum]--;
-      if (map[tNum] === -1) {
-        return map;
-      }
-    }
-  }
-  return " ";
-};
-const s = "aa";
-const t = "a";
-console.log(findTheDifference(s, t));
+  return duplicatesArr;
+}
+const nums = [1, 2, 3, 4, 4, 5, 6, 7, 8, 3, 5, 8, 1, 1];
+
+console.log(findDuplicate(nums));
