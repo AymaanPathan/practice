@@ -1,23 +1,19 @@
-var findTheDifference = function (s, t) {
-  let freq = {};
-  for (let i = 0; i < s.length; i++) {
-    let sChar = s[i];
-    if (!freq[sChar]) {
-      freq[sChar] = 1;
+var isSubsequence = function (s, t) {
+  let i = 0;
+  let j = 0;
+  while (i < s.length && j < t.length) {
+    if (s[i] === t[j]) {
+      i++;
+      j++;
     } else {
-      freq[sChar]++;
+      j++;
     }
   }
-  for (let i = 0; i < t.length; i++) {
-    let tChar = t[i];
-    if (!freq[tChar]) {
-      return tChar;
-    } else {
-      freq[tChar]--;
-    }
+  if (i === s.length) {
+    return true;
   }
-  return " ";
+  return false;
 };
-const s = "a";
-const t = "aa";
-console.log(findTheDifference(s, t));
+const s = "abc";
+const t = "ahbgdc";
+console.log(isSubsequence(s, t));
