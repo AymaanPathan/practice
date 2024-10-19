@@ -1,18 +1,23 @@
-var searchInsert = function (nums, target) {
-  let start = 0;
-  let end = nums.length - 1;
-  while (start <= end) {
-    let mid = Math.floor(start + end / 1);
-    if (nums[mid] === target) {
-      return mid;
-    } else if (nums[mid] < target) {
-      start = mid + 1;
+var findTheDifference = function (s, t) {
+  let freq = {};
+  for (let i = 0; i < s.length; i++) {
+    let sChar = s[i];
+    if (!freq[sChar]) {
+      freq[sChar] = 1;
     } else {
-      end = mid - 1;
+      freq[sChar]++;
     }
   }
-  return end + 1;
+  for (let i = 0; i < t.length; i++) {
+    let tChar = t[i];
+    if (!freq[tChar]) {
+      return tChar;
+    } else {
+      freq[tChar]--;
+    }
+  }
+  return " ";
 };
-
-const arr = [1, 3, 5, 6];
-console.log(searchInsert(arr, 7));
+const s = "a";
+const t = "aa";
+console.log(findTheDifference(s, t));
