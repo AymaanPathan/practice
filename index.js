@@ -1,8 +1,29 @@
-var arrayStringsAreEqual = function (word1, word2) {
-  const w1 = word1.join("");
-  const w2 = word2.join("");
-  return w1 === w2;
-};
-const word1 = ["a", "cb"];
-const word2 = ["ab", "c"];
-console.log(arrayStringsAreEqual(word1, word2));
+function thirdMax(nums) {
+  let max = -Infinity;
+  let secondMax = -Infinity;
+  let thridLargest = -Infinity;
+
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    if (num > max) {
+      max = num;
+    }
+  }
+
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    if (num > secondMax && num !== max) {
+      secondMax = num;
+    }
+  }
+
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    if (num > thridLargest && num !== secondMax && num !== max) {
+      thridLargest = num;
+    }
+  }
+  return thridLargest;
+}
+const arr = [4, 32, 6, 7, 62, 42];
+console.log(thirdMax(arr));
