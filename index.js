@@ -1,10 +1,18 @@
-function outer() {
-  var a = 10;
-  function inner() {
-    console.log(a);
+class Stack {
+  constructor() {
+    this.items = [];
+    this.count = 0;
   }
-  return inner;
+
+  push(element) {
+    this.items[this.count] = element;
+    console.log(`${element} Added To Index ${this.count}`);
+    this.count++;
+  }
 }
 
-const abc = outer();
-abc();
+const stack = new Stack();
+
+stack.push(12);
+stack.push(13);
+stack.push(14);
