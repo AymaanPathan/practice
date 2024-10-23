@@ -1,18 +1,12 @@
-class Cookie {
-  constructor(cookie) {
-    this.cookie = cookie;
-  }
-  getColor() {
-    //getter
-    return this.color;
-  }
-  setColor(color) {
-    //setter
-    this.color = color;
-  }
-}
-const cookieOne = new Cookie("Blue");
-const cookieTwo = new Cookie("Red");
+// pointers
 
-cookieTwo.setColor("black");
-console.log(cookieTwo.getColor());
+const obj1 = {
+  val: 1,
+};
+
+const obj2 = obj1;
+
+obj2.val = 1;
+console.log(obj2);
+
+// in above code both obj1 and obj reference to same obj
