@@ -29,27 +29,38 @@ class LinkedList {
   pop() {
     if (!this.head) {
       return undefined;
+    } else {
+      let pre = this.head;
+      let temp = this.head;
+      while (temp.next) {
+        pre = temp;
+        temp = temp.next;
+      }
+      this.tail = pre;
+      this.tail.next = null;
+      this.length--;
+      if (this.length === 0) {
+        this.head = null;
+        this.tail = null;
+      }
+      return temp.val;
     }
-    let pre = this.head;
-    let temp = this.head;
-    while (temp.next) {
-      pre = temp;
-      temp = temp.next;
+  }
+  unshift(val) {
+    let newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
     }
-    this.tail = pre;
-    this.tail.next = null;
-    this.length--;
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null;
-    }
-    return temp;
+    this.length++;
+    return newNode;
   }
 }
 
 let linkedList = new LinkedList(1);
 linkedList.push(2);
-linkedList.push(3);
-linkedList.push(4);
-
-console.log(linkedList.pop());
+linkedList.unshift(4);
+console.log(linkedList);
