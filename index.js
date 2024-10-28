@@ -1,28 +1,21 @@
-class Stack {
-  constructor() {
-    this.items = [];
-    this.count = 0;
-  }
-
-  push(element) {
-    this.items[this.count] = element;
-    this.count++;
-    return this.items;
-  }
-
-  pop() {
-    if (this.count === 0) {
-      return undefined;
+var findDisappearedNumbers = function (nums) {
+  let map = {};
+  let arr = [];
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    if (!map[num]) {
+      map[num] = 1;
+    } else {
+      map[num]++;
     }
-    let deletedItem = this.items[this.count - 1];
-    this.count--;
-    console.log(`deleted item is ${deletedItem}`);
-    return deletedItem;
   }
-}
+  for (let i = 1; i <= nums.length; i++) {
+    if (!map[i]) {
+      arr.push(i);
+    }
+  }
+  return arr;
+};
 
-const stack = new Stack();
-
-stack.push(12);
-stack.push(13);
-stack.pop();
+const arr = [1, 1, 2];
+console.log(findDisappearedNumbers(arr));
