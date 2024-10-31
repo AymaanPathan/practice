@@ -1,54 +1,20 @@
 class Node {
-  constructor(value) {
-    this.value = value;
+  constructor(val) {
+    this.val = val;
     this.next = null;
   }
 }
 
 class LinkedList {
-  constructor(value) {
-    const newNode = new Node(value);
+  constructor(val) {
+    let newNode = new Node(val);
     this.head = newNode;
-    this.tail = this.head;
+    this.tail = newNode;
     this.length = 1;
   }
 
-  printList() {
-    let temp = this.head;
-    while (temp !== null) {
-      console.log(temp.value);
-      temp = temp.next;
-    }
-  }
-
-  getHead() {
-    if (this.head === null) {
-      console.log("Head: null");
-    } else {
-      console.log("Head: " + this.head.value);
-    }
-  }
-
-  getTail() {
-    if (this.tail === null) {
-      console.log("Tail: null");
-    } else {
-      console.log("Tail: " + this.tail.value);
-    }
-  }
-
-  getLength() {
-    console.log("Length: " + this.length);
-  }
-
-  makeEmpty() {
-    this.head = null;
-    this.tail = null;
-    this.length = 0;
-  }
-
-  push(value) {
-    const newNode = new Node(value);
+  push(val) {
+    let newNode = new Node(val);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
@@ -59,92 +25,27 @@ class LinkedList {
     this.length++;
     return this;
   }
-
-  pop() {
-    if (this.length === 0) return undefined;
+  get(index) {
     let temp = this.head;
-    let pre = this.head;
-    while (temp.next) {
-      pre = temp;
-      temp = temp.next;
-    }
-    this.tail = pre;
-    this.tail.next = null;
-    this.length--;
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null;
-    }
-    return temp;
-  }
-
-  unshift(value) {
-    const newNode = new Node(value);
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      newNode.next = this.head;
-      this.head = newNode;
-    }
-    this.length++;
-    return this;
-  }
-
-  /// WRITE SHIFT METHOD HERE ///
-  //                           //
-  shift() {
-    if (!this.head) {
+    if (index < 0 || index >= this.length) {
       return undefined;
     }
-    let temp = this.head;
-    this.head = this.head.next;
-    temp.next = null;
-    this.length--;
-    if (this.length == 0) {
-      // if there is only one element
-      this.tail = null;
+    for (let i = 0; i < index; i++) {
+      temp = temp.next;
     }
     return temp;
   }
-  //                           //
-  //                           //
-  ///////////////////////////////
-}
-
-function test() {
-  let myLinkedList = new LinkedList(2);
-  myLinkedList.push(1);
-
-  // (2) Items in LL - Returns 2 Node
-  if (myLinkedList.length !== 0) {
-    console.log(myLinkedList.shift().value);
-  } else {
-    console.log("null");
-  }
-
-  // (1) Item in LL - Returns 1 Node
-  if (myLinkedList.length !== 0) {
-    console.log(myLinkedList.shift().value);
-  } else {
-    console.log("null");
-  }
-
-  // (0) Items in LL - Returns null
-  if (myLinkedList.length !== 0) {
-    console.log(myLinkedList.shift().value);
-  } else {
-    console.log("null");
+  set(index, val) {
+    let temp = this.get(index);
+    if (temp) {
+      temp.val = val;
+      return true;
+    }
+    return false;
   }
 }
 
-test();
-
-/*
-    EXPECTED OUTPUT:
-    ----------------
-    2
-    1
-    null
-
-*/
+let linkedList = new LinkedList(1);
+linkedList.push(2);
+console.log(linkedList.set(5, 4));
+console.log(linkedList);
