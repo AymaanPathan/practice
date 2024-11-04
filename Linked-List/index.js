@@ -157,13 +157,27 @@ class LinkedList {
     }
     return this.head;
   }
+  isPalindrome() {
+    let arr = [];
+    let current = this.head;
+    while (current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+    let start = 0;
+    let end = arr.length - 1;
+    while (start <= end) {
+      if (arr[start] !== arr[end]) {
+        return false;
+      }
+      start++;
+      end--;
+    }
+    return true;
+  }
 }
 
 let linkedList = new LinkedList(1);
 linkedList.push(2);
-linkedList.push(3);
-linkedList.push(6);
-linkedList.push(5);
-linkedList.push(6);
 
-console.log(linkedList.removeDuplicates(6));
+console.log(linkedList.isPalindrome());
