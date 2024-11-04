@@ -1,11 +1,17 @@
-var reverseList = function (head) {
-  let current = head;
-  let prev = null;
-  while (current) {
-    let next = current.next;
-    current.next = prev;
-    prev = current;
-    current = next;
+var removeElements = function (head, val) {
+  while (head && head.val === val) {
+    head = head.next;
   }
-  return prev;
+  let current = head;
+  let prev = head;
+
+  while (current) {
+    if (current.val === val) {
+      prev.next = current.next;
+    } else {
+      prev = current;
+    }
+    current = current.next;
+  }
+  return head;
 };
