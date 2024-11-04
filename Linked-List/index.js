@@ -179,5 +179,7 @@ class LinkedList {
 
 let linkedList = new LinkedList(1);
 linkedList.push(2);
+linkedList.push(2);
+linkedList.push(1);
 
 console.log(linkedList.isPalindrome());
