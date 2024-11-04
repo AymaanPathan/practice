@@ -1,18 +1,23 @@
-var isPalindrome = function (head) {
-  let arr = [];
-  let current = head;
-  while (current) {
-    arr.push(current.val);
-    current = current.next;
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var getIntersectionNode = function (headA, headB) {
+  let current1 = headA;
+  let current2 = headB;
+
+  while (current1 !== current2) {
+    current1 = current1 === null ? headB : current1.next;
+    current2 = current2 === null ? headA : current2.next;
   }
-  let start = 0;
-  let end = arr.length - 1;
-  while (start < end) {
-    if (arr[start] !== arr[end]) {
-      return false;
-    }
-    start++;
-    end--;
-  }
-  return true;
+  return current1;
 };
