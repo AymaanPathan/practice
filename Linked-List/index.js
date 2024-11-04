@@ -121,9 +121,49 @@ class LinkedList {
     this.length--;
     return temp;
   }
+  reverse() {
+    let current = this.head;
+    this.head = this.tail;
+    this.tail = current;
+    let prev = null;
+    while (current) {
+      let next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+    this.head = prev;
+    return this;
+  }
+
+  removeDuplicates(val) {
+    while (this.head && this.head.val === val) {
+      this.head = this.head.next;
+      this.length--;
+    }
+    let current = this.head;
+    let prev = this.head;
+    while (current) {
+      if (current.val === val) {
+        prev.next = current.next;
+        this.length--;
+      } else {
+        prev = current;
+      }
+      current = current.next;
+    }
+    if (prev && prev.next === null) {
+      this.tail = prev;
+    }
+    return this.head;
+  }
 }
 
 let linkedList = new LinkedList(1);
 linkedList.push(2);
-linkedList.remove(0);
-console.log(linkedList);
+linkedList.push(3);
+linkedList.push(6);
+linkedList.push(5);
+linkedList.push(6);
+
+console.log(linkedList.removeDuplicates(6));
