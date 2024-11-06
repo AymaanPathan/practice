@@ -136,6 +136,23 @@ class LinkedList {
     return this;
   }
 
+  deleteMiddle() {
+    let arr = [];
+    let temp = this.head;
+    while (temp) {
+      arr.push(temp);
+      temp = temp.next;
+    }
+    let start = 0;
+    let end = arr.length - 1;
+    let mid = Math.floor(start + end) / 2;
+    let current = this.head;
+    for (let i = 0; i < mid; i++) {
+      current = current.next;
+    }
+    return current;
+  }
+
   removeDuplicates(val) {
     while (this.head && this.head.val === val) {
       this.head = this.head.next;
@@ -178,8 +195,11 @@ class LinkedList {
 }
 
 let linkedList = new LinkedList(1);
-linkedList.push(2);
-linkedList.push(2);
+linkedList.push(3);
+linkedList.push(4);
+linkedList.push(7);
 linkedList.push(1);
+linkedList.push(2);
+linkedList.push(6);
 
-console.log(linkedList.isPalindrome());
+console.log(linkedList.deleteMiddle());
