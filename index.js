@@ -1,13 +1,15 @@
-var maxProfit = function (prices) {
-  let buy = prices[0];
-  let profit = 0;
-  for (let i = 1; i < prices.length; i++) {
-    if (buy > prices[i]) {
-      buy = prices[i];
+var findMaxConsecutiveOnes = function (nums) {
+  let count = 0;
+  let max = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 1) {
+      count++;
+      max = Math.max(count, max);
     } else {
-      let currentProfit = prices[i] - buy;
-      profit = Math.max(currentProfit, profit);
+      count = 0;
     }
   }
-  return profit;
+  return max;
 };
+const nums = [1, 0, 1, 1, 0, 1];
+console.log(findMaxConsecutiveOnes(nums));
