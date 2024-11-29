@@ -1,15 +1,15 @@
-var findMaxConsecutiveOnes = function (nums) {
-  let count = 0;
-  let max = 0;
+var moveZeroes = function (nums) {
+  let nonZero = 0;
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === 1) {
-      count++;
-      max = Math.max(count, max);
-    } else {
-      count = 0;
+    if (nums[i] !== 0) {
+      nums[nonZero] = nums[i];
+      nonZero++;
     }
   }
-  return max;
+  for (let i = nonZero; i < nums.length; i++) {
+    nums[i] = 0;
+  }
+  return nums;
 };
-const nums = [1, 0, 1, 1, 0, 1];
-console.log(findMaxConsecutiveOnes(nums));
+const nums = [0, 1, 0, 3, 12];
+console.log(moveZeroes(nums));
