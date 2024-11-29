@@ -1,19 +1,13 @@
-function reverse(nums, start, end) {
-  while (start < end) {
-    let temp = nums[start];
-    nums[start] = nums[end];
-    nums[end] = temp;
-    start++;
-    end--;
+var maxProfit = function (prices) {
+  let buy = prices[0];
+  let profit = 0;
+  for (let i = 1; i < prices.length; i++) {
+    if (buy > prices[i]) {
+      buy = prices[i];
+    } else {
+      let currentProfit = prices[i] - buy;
+      profit = Math.max(currentProfit, profit);
+    }
   }
-}
-
-var rotate = function (nums, k) {
-  k = k % nums.length;
-  reverse(nums, 0, nums.length - 1);
-  reverse(nums, 0, k - 1);
-  reverse(nums, k, nums.length - 1);
+  return profit;
 };
-const arr = [-1, -100, 3, 99];
-rotate(arr, 2);
-console.log(arr);
