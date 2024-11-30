@@ -1,12 +1,14 @@
-var removeDuplicates = function (nums) {
-  let unique = 1;
-  for (let i = 1; i < nums.length; i++) {
-    if (nums[i] !== nums[i - 1]) {
-      nums[unique] = nums[i];
-      unique++;
+function bubbleSort(nums) {
+  for (let i = nums.length - 1; i > 0; i--) {
+    for (let j = 0; j < i; j++) {
+      if (nums[j] > nums[j + 1]) {
+        let temp = nums[j];
+        nums[j] = nums[j + 1];
+        nums[j + 1] = temp;
+      }
     }
   }
-  return unique;
-};
-const nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
-console.log(removeDuplicates(nums));
+  return nums;
+}
+const nums = [3, 0, 1];
+console.log(bubbleSort(nums));
