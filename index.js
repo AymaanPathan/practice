@@ -1,15 +1,13 @@
-var search = function (nums, target) {
+var nextGreatestLetter = function (letters, target) {
   let start = 0;
-  let end = nums.length - 1;
+  let end = letters.length - 1;
   while (start <= end) {
     let mid = Math.floor((start + end) / 2);
-    if (nums[mid] === target) {
-      return mid;
-    } else if (target > nums[mid]) {
+    if (target >= letters[mid]) {
       start = mid + 1;
     } else {
       end = mid - 1;
     }
   }
-  return -1;
+  return letters[start % letters.length];
 };
