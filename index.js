@@ -1,18 +1,15 @@
-function selectionSort(nums) {
-  let min;
-  for (let i = 0; i < nums.length; i++) {
-    min = i;
-    for (let j = i + 1; j < nums.length; j++) {
-      if (nums[j] < nums[min]) {
-        min = j;
-      }
+var search = function (nums, target) {
+  let start = 0;
+  let end = nums.length - 1;
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    if (nums[mid] === target) {
+      return mid;
+    } else if (target > nums[mid]) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
     }
-    let temp = nums[i];
-    nums[i] = nums[min];
-    nums[min] = temp;
   }
-  return nums;
-}
-
-const arr = [3, 0, 2];
-console.log(selectionSort(arr));
+  return -1;
+};
