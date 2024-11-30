@@ -1,19 +1,18 @@
-function missingNumber(nums) {
-  for (let i = nums.length - 1; i > 0; i--) {
-    for (let j = 0; j < i; j++) {
-      if (nums[j] > nums[j + 1]) {
-        let temp = nums[j];
-        nums[j] = nums[j + 1];
-        nums[j + 1] = temp;
+function selectionSort(nums) {
+  let min;
+  for (let i = 0; i < nums.length; i++) {
+    min = i;
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[j] < nums[min]) {
+        min = j;
       }
     }
+    let temp = nums[i];
+    nums[i] = nums[min];
+    nums[min] = temp;
   }
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== i) {
-      return i;
-    }
-  }
-  return nums.length;
+  return nums;
 }
-const nums = [3, 0, 1];
-console.log(missingNumber(nums));
+
+const arr = [3, 0, 2];
+console.log(selectionSort(arr));
