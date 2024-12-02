@@ -4,15 +4,18 @@ function swap(nums, first, second) {
   nums[second] = temp;
 }
 
-function bubbleSort(nums) {
-  for (let i = nums.length; i > 0; i--) {
-    for (let j = 0; j < i; j++) {
-      if (nums[j] > nums[j + 1]) {
-        swap(nums, j, j + 1);
-      }
+function selectionSort(nums) {
+  let min;
+  for (let i = 0; i < nums.length; i++) {
+    min = i;
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[j] < nums[min]) min = j;
+    }
+    if (i !== min) {
+      swap(nums, i, min);
     }
   }
   return nums;
 }
 const nums = [4, 6, 2, 5, 3, 1];
-console.log(bubbleSort(nums));
+console.log(selectionSort(nums));
