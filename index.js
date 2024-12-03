@@ -1,17 +1,27 @@
-function binarySearch(nums, target, start, end) {
-  if (start > end) {
-    return -1;
+var isAnagram = function (s, t) {
+  let occurence = {};
+  if (s.length !== t.length) {
+    return false;
   }
-  let mid = Math.floor((start + end) / 2);
-  if (nums[mid] === target) {
-    return mid;
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
+    if (!occurence[char]) {
+      occurence[char] = 1;
+    } else {
+      occurence[char]++;
+    }
   }
-  if (nums[mid] < target) {
-    return binarySearch(nums, target, mid + 1, end);
-  } else {
-    return binarySearch(nums, target, start, mid - 1);
+  for (let j = 0; j < t.length; j++) {
+    let tChar = t[j];
+    if (!occurence[tChar]) {
+      return false;
+    } else {
+      occurence[tChar]--;
+    }
   }
-}
+  return true;
+};
 
-const arr = [4, 3, 5, 7, 1, 9, 8];
-console.log(binarySearch(arr, 7, 0, arr.length - 1));
+const s = "anagram";
+const t = "nagaram";
+console.log(isAnagram(s, t));
