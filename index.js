@@ -1,16 +1,6 @@
-var addSpaces = function (s, spaces) {
-  let array = [];
-  let pointer = 0;
-
-  for (let i = 0; i < s.length; i++) {
-    if (i === spaces[pointer]) {
-      array.push(" ");
-      pointer++;
-    }
-    array.push(s[i]);
-  }
-  return array.join("");
-};
-const s = "EnjoyYourCoffee";
-const spaces = [5, 9];
-console.log(addSpaces(s, spaces));
+function printToN(n) {
+  if (n === 0) return 0;
+  console.log(n);
+  return printToN(n - 1);
+}
+printToN(2);
