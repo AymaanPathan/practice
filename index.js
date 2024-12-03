@@ -1,27 +1,16 @@
-var isAnagram = function (s, t) {
-  let occurence = {};
-  if (s.length !== t.length) {
-    return false;
-  }
-  for (let i = 0; i < s.length; i++) {
-    let char = s[i];
-    if (!occurence[char]) {
-      occurence[char] = 1;
-    } else {
-      occurence[char]++;
-    }
-  }
-  for (let j = 0; j < t.length; j++) {
-    let tChar = t[j];
-    if (!occurence[tChar]) {
-      return false;
-    } else {
-      occurence[tChar]--;
-    }
-  }
-  return true;
-};
+var addSpaces = function (s, spaces) {
+  let array = [];
+  let pointer = 0;
 
-const s = "anagram";
-const t = "nagaram";
-console.log(isAnagram(s, t));
+  for (let i = 0; i < s.length; i++) {
+    if (i === spaces[pointer]) {
+      array.push(" ");
+      pointer++;
+    }
+    array.push(s[i]);
+  }
+  return array.join("");
+};
+const s = "EnjoyYourCoffee";
+const spaces = [5, 9];
+console.log(addSpaces(s, spaces));
