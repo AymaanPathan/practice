@@ -1,16 +1,19 @@
-var majorityElement = function (nums) {
-  let freq = {};
-  for (let i = 0; i < nums.length; i++) {
-    let num = nums[i];
-    if (!freq[num]) {
-      freq[num] = 1;
-    } else {
-      freq[num]++;
-    }
-  }
-  let array = Object.entries(freq).sort((a, b) => b[1] - a[1]);
-  return Number(array[0][0]);
-};
+var plusOne = function (digits) {
+  const Array = [];
 
-const arr = [2, 2, 1, 1, 1, 2, 2];
-console.log(majorityElement(arr));
+  let digitAns = "";
+  for (let i = 0; i < digits.length; i++) {
+    let digitStr = digits[i].toString();
+    digitAns += digitStr;
+  }
+
+  let ans = [BigInt(digitAns) + BigInt(1)];
+  let strans = ans.toString();
+  let sArray = strans.split("");
+  for (let i = 0; i < sArray.length; i++) {
+    Array.push(Number(sArray[i]));
+  }
+  return Array;
+};
+const digits = [9];
+console.log(plusOne(digits));
