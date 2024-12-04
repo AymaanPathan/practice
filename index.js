@@ -4,18 +4,22 @@ function swap(nums, start, end) {
   nums[end] = temp;
 }
 
-function cyclicSort(nums) {
-  let index = 0;
-  while (index < nums.length) {
-    let correct = nums[index] - 1;
-    if (nums[index] != nums[correct]) {
-      swap(nums, index, correct);
+var missingNumber = function (nums) {
+  let i = 0;
+  while (i < nums.length) {
+    let correct = nums[i];
+    if (nums[i] !== nums[correct] && nums[i] < nums.length) {
+      swap(nums, correct, i);
     } else {
-      index++;
+      i++;
     }
   }
-  return nums;
-}
-
-const arr = [3, 5, 2, 1, 4];
-console.log(cyclicSort(arr));
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== i) {
+      return i;
+    }
+  }
+  return nums.length;
+};
+const arr = [0, 1];
+console.log(missingNumber(arr));
