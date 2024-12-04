@@ -1,24 +1,16 @@
-var frequencySort = function (s) {
-  const freq = {};
-  let str = "";
-  for (let i = 0; i < s.length; i++) {
-    let char = s[i];
-    if (!freq[char]) {
-      freq[char] = 1;
+var majorityElement = function (nums) {
+  let freq = {};
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    if (!freq[num]) {
+      freq[num] = 1;
     } else {
-      freq[char]++;
+      freq[num]++;
     }
   }
-
-  const freqArray = Object.entries(freq);
-  freqArray.sort((a, b) => b[1] - a[1]);
-
-  for (let [char, count] of freqArray) {
-    for (let i = 0; i < count; i++) {
-      str += char;
-    }
-  }
-  return str;
+  let array = Object.entries(freq).sort((a, b) => b[1] - a[1]);
+  return Number(array[0][0]);
 };
-const s = "Aabb";
-console.log(frequencySort(s));
+
+const arr = [2, 2, 1, 1, 1, 2, 2];
+console.log(majorityElement(arr));
