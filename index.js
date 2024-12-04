@@ -3,12 +3,11 @@ function swap(nums, start, end) {
   nums[start] = nums[end];
   nums[end] = temp;
 }
-var findDuplicates = function (nums) {
+var firstMissingPositive = function (nums) {
   let i = 0;
-  let ans = [];
   while (i < nums.length) {
     let correct = nums[i] - 1;
-    if (nums[i] !== nums[correct]) {
+    if (nums[i] > 0 && nums[i] !== nums[correct] && nums[i] <= nums.length) {
       swap(nums, correct, i);
     } else {
       i++;
@@ -16,11 +15,8 @@ var findDuplicates = function (nums) {
   }
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] !== i + 1) {
-      ans.push(nums[i]);
+      return i + 1;
     }
   }
-  return ans;
+  return nums.length + 1;
 };
-
-const arr = [1];
-console.log(findDuplicates(arr));
