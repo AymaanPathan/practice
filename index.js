@@ -1,16 +1,13 @@
-var numberOfSteps = function (num) {
-  return helper(num, 0);
+var removeElement = function (nums, val) {
+  let index = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== val) {
+      nums[index] = nums[i];
+      index++;
+    }
+  }
+  return index;
 };
-
-function helper(num, step) {
-  if (num === 0) {
-    return step;
-  }
-  if (num % 2 == 0) {
-    return helper(num / 2, step + 1);
-  }
-  return helper(num - 1, step + 1);
-}
-
-const num = 14;
-console.log(numberOfSteps(num));
+const nums = [3, 2, 2, 3];
+const val = 3;
+console.log(removeElement(nums, val));
