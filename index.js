@@ -1,15 +1,16 @@
-var isPalindrome = function (x) {
-  let str = x.toString();
-  let start = 0;
-  let end = str.length - 1;
-  while (start < end) {
-    if (str[start] !== str[end]) {
-      return false;
-    }
-    start++;
-    end--;
-  }
-  return true;
+var numberOfSteps = function (num) {
+  return helper(num, 0);
 };
-const x = 10;
-console.log(isPalindrome(x));
+
+function helper(num, step) {
+  if (num === 0) {
+    return step;
+  }
+  if (num % 2 == 0) {
+    return helper(num / 2, step + 1);
+  }
+  return helper(num - 1, step + 1);
+}
+
+const num = 14;
+console.log(numberOfSteps(num));
