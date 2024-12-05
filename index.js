@@ -1,13 +1,26 @@
-var removeElement = function (nums, val) {
-  let index = 0;
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== val) {
-      nums[index] = nums[i];
-      index++;
+var reverseVowels = function (s) {
+  let vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
+  let start = 0;
+  let arr = s.split("");
+  let end = arr.length - 1;
+
+  while (start < end) {
+    if (vowels.includes(arr[start]) && vowels.includes(arr[end])) {
+      let temp = arr[start];
+      arr[start] = arr[end];
+      arr[end] = temp;
+      start++;
+      end--;
+    } else if (vowels.includes(arr[start]) && !vowels.includes(arr[end])) {
+      end--;
+    } else if (!vowels.includes(arr[start]) && vowels.includes(arr[end])) {
+      start++;
+    } else {
+      start++;
+      end--;
     }
   }
-  return index;
+  return arr.join("");
 };
-const nums = [3, 2, 2, 3];
-const val = 3;
-console.log(removeElement(nums, val));
+const s = "IceCreAm";
+console.log(reverseVowels(s));
