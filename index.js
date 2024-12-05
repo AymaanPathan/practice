@@ -1,12 +1,15 @@
-var reverse = function (x) {
-  const isNegative = x < 0;
-  let strNumber = Math.abs(x).toString();
-  let ans = "";
-  for (let i = strNumber.length - 1; i >= 0; i--) {
-    ans += strNumber[i];
+var isPalindrome = function (x) {
+  let str = x.toString();
+  let start = 0;
+  let end = str.length - 1;
+  while (start < end) {
+    if (str[start] !== str[end]) {
+      return false;
+    }
+    start++;
+    end--;
   }
-  let intAns = parseInt(ans);
-  return isNegative ? -intAns : intAns;
+  return true;
 };
-const x = -123;
-console.log(reverse(x));
+const x = 10;
+console.log(isPalindrome(x));
