@@ -1,10 +1,12 @@
-var isAcronym = function (words, s) {
-  let str = "";
+var findWordsContaining = function (words, x) {
+  let arr = [];
   for (let i = 0; i < words.length; i++) {
-    str += words[i].charAt(0);
+    if (words[i].includes(x)) {
+      arr.push(i);
+    }
   }
-  return str === s;
+  return arr;
 };
-const words = ["alice", "bob", "charlie"];
-const s = "abc";
-console.log(isAcronym(words, s));
+const words = ["leet", "code"];
+const s = "e";
+console.log(findWordsContaining(words, s));
