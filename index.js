@@ -1,12 +1,10 @@
-var findWordsContaining = function (words, x) {
-  let arr = [];
-  for (let i = 0; i < words.length; i++) {
-    if (words[i].includes(x)) {
-      arr.push(i);
-    }
-  }
-  return arr;
+var splitWordsBySeparator = function (words, separator) {
+  return words
+    .join(separator)
+    .split(separator)
+    .filter((val) => val != "");
 };
-const words = ["leet", "code"];
-const s = "e";
-console.log(findWordsContaining(words, s));
+
+const words = ["|||"];
+const separator = "|";
+console.log(splitWordsBySeparator(words, separator));
