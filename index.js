@@ -1,26 +1,25 @@
-var reverseVowels = function (s) {
-  let vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
-  let start = 0;
-  let arr = s.split("");
-  let end = arr.length - 1;
-
-  while (start < end) {
-    if (vowels.includes(arr[start]) && vowels.includes(arr[end])) {
-      let temp = arr[start];
-      arr[start] = arr[end];
-      arr[end] = temp;
-      start++;
-      end--;
-    } else if (vowels.includes(arr[start]) && !vowels.includes(arr[end])) {
-      end--;
-    } else if (!vowels.includes(arr[start]) && vowels.includes(arr[end])) {
-      start++;
-    } else {
-      start++;
-      end--;
-    }
+var validMountainArray = function (arr) {
+  if (arr.length < 3) {
+    return false;
   }
-  return arr.join("");
+
+  let i = 0;
+
+  while (i < arr.length - 1 && arr[i] < arr[i + 1]) {
+    //check increasing
+    i++;
+  }
+
+  if (i === 0 || i === arr.length - 1) {
+    // if i is check increasing and reach to end this is will be not valid
+    return false;
+  }
+
+  while (i < arr.length - 1 && arr[i] > arr[i + 1]) {
+    // otherwise check in decreasing part
+    i++;
+  }
+  return i == arr.length - 1;
 };
-const s = "IceCreAm";
-console.log(reverseVowels(s));
+const arr = [0, 3, 2, 1];
+console.log(validMountainArray(arr));
