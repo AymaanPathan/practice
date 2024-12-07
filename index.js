@@ -1,9 +1,8 @@
-function isSortedWithRecursion(nums, index) {
-  if (index === nums.length - 1) return true;
-
-  return (
-    nums[index] < nums[index + 1] && isSortedWithRecursion(nums, index + 1)
-  );
+function searchWithRecursion(nums, index, target) {
+  if (nums[index] == target) {
+    return index;
+  } else if (index === nums.length - 1) return -1;
+  return searchWithRecursion(nums, index + 1, target);
 }
-const nums = [5, 3, 4];
-console.log(isSortedWithRecursion(nums, 0));
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.log(searchWithRecursion(nums, 0, 1));
