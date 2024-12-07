@@ -1,9 +1,9 @@
-var firstPalindrome = function (words) {
-  for (let i = 0; i < words.length; i++) {
-    let rev = words[i].split("").reverse().join("");
-    if (rev === words[i]) return words[i];
-  }
-  return "";
-};
-const words = ["abc", "car", "ada", "racecar", "cool"];
-console.log(firstPalindrome(words));
+function isSortedWithRecursion(nums, index) {
+  if (index === nums.length - 1) return true;
+
+  return (
+    nums[index] < nums[index + 1] && isSortedWithRecursion(nums, index + 1)
+  );
+}
+const nums = [5, 3, 4];
+console.log(isSortedWithRecursion(nums, 0));
