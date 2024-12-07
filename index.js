@@ -1,13 +1,11 @@
-function searchMultiple(nums, index, target, arr = []) {
-  if (index === nums.length - 1) {
-    return arr;
+var findMin = function (nums) {
+  let min = Infinity;
+  for (let i = 0; i < nums.length; i++) {
+    if (min >= nums[i]) {
+      min = nums[i];
+    }
   }
-
-  if (nums[index] == target) {
-    arr.push(index);
-  }
-
-  return searchMultiple(nums, index + 1, target, arr);
-}
-const nums = [1, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-console.log(searchMultiple(nums, 0, 1));
+  return min;
+};
+const nums = [11, 13, 15, 17];
+console.log(findMin(nums));
