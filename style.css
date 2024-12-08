@@ -1,10 +1,17 @@
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .main {
-  background-color: rgb(238, 170, 170);
+  position: relative;
   height: 100vh;
-  width: 50vw;
+}
+
+.div-hello {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
 }
