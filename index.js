@@ -1,44 +1,38 @@
-function mergeSort(nums) {
+var sortArray = function (nums) {
   if (nums.length === 1) {
     return nums;
   }
   let mid = Math.floor(nums.length / 2);
-  let left = nums.slice(0, mid); // 0 to mid-1
-  let right = nums.slice(mid); // mid to length
+  let left = nums.slice(0, mid);
+  let right = nums.slice(mid);
 
-  let leftSort = mergeSort(left); // sort the left half
-  let rightSort = mergeSort(right); // sort the right half
-  return merge(leftSort, rightSort);
-}
+  let leftSorted = sortArray(left);
+  let rightSorted = sortArray(right);
+  return merge(leftSorted, rightSorted);
+};
 
-function merge(first, second) {
-  let array = [];
+function merge(left, right) {
   let i = 0;
   let j = 0;
-  let k = 0;
-  while (i < first.length && j < second.length) {
-    if (first[i] < second[j]) {
-      array.push(first[i]);
+  let ans = [];
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      ans.push(left[i]);
       i++;
     } else {
-      array.push(second[j]);
+      ans.push(right[j]);
       j++;
     }
-    k++;
   }
 
-  while (i < first.length) {
-    array.push(first[i]);
+  while (i < left.length) {
+    ans.push(left[i]);
     i++;
-    k++;
   }
 
-  while (j < second.length) {
-    array.push(second[j]);
+  while (j < right.length) {
+    ans.push(right[j]);
     j++;
-    k++;
   }
-  return array;
+  return ans;
 }
-const array = [38, 27, 43, 3, 9, 82, 10];
-console.log(mergeSort(array));
