@@ -4,18 +4,17 @@ function swap(nums, first, second) {
   nums[second] = temp;
 }
 
-function selectionSort(nums) {
-  let min;
+function insertionSort(nums) {
   for (let i = 0; i < nums.length; i++) {
-    min = i;
-    for (let j = i + 1; j < nums.length; j++) {
-      if (nums[j] < nums[min]) min = j;
-    }
-    if (i !== min) {
-      swap(nums, i, min);
+    for (let j = i + 1; j > 0; j--) {
+      if (nums[j] < nums[j - 1]) {
+        swap(nums, j, j - 1);
+      } else {
+        break;
+      }
     }
   }
   return nums;
 }
 const nums = [4, 6, 2, 5, 3, 1];
-console.log(selectionSort(nums));
+console.log(insertionSort(nums));
