@@ -1,11 +1,15 @@
-var runningSum = function (nums) {
-  let arr = [];
-  let sum = 0;
+var findNumbers = function (nums) {
+  let count = 0;
+  let str = [];
   for (let i = 0; i < nums.length; i++) {
-    sum += nums[i];
-    arr.push(sum);
+    str.push(nums[i].toString());
   }
-  return arr;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i].length % 2 === 0) {
+      count++;
+    }
+  }
+  return count;
 };
-const nums = [1, 2, 3, 4];
-console.log(runningSum(nums));
+const nums = [12, 345, 2, 6, 7896];
+console.log(findNumbers(nums));
