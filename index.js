@@ -1,32 +1,10 @@
-var mergeAlternately = function (word1, word2) {
-  let i = 0;
-  let j = 0;
-  let k = 0;
-  let str = "";
-  while (i < word1.length && j < word2.length) {
-    if ((k + 1) % 2 === 0) {
-      str += word2[j];
-      j++;
-      k++;
-    } else {
-      str += word1[i];
-      i++;
-      k++;
-    }
+var restoreString = function (s, indices) {
+  let str = [];
+  for (let i = 0; i < indices.length; i++) {
+    str[indices[i]] = s[i];
   }
-  while (j < word2.length) {
-    str += word2[j];
-    j++;
-    k++;
-  }
-
-  while (i < word1.length) {
-    str += word1[i];
-    i++;
-    k++;
-  }
-  return str;
+  return str.join("");
 };
-const word1 = "abcd";
-const word2 = "pq";
-console.log(mergeAlternately(word1, word2));
+const s = "codeleet";
+const indices = [4, 5, 6, 7, 0, 2, 1, 3];
+console.log(restoreString(s, indices));
