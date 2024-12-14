@@ -1,68 +1,32 @@
-function mergeSort(nums) {
-  if (nums.length === 1) {
-    return nums;
-  }
-  let mid = Math.floor(nums.length / 2);
-  let left = nums.slice(0, mid);
-  let right = nums.slice(mid);
-
-  let leftSorted = mergeSort(left);
-  let rightSorted = mergeSort(right);
-
-  return merge(leftSorted, rightSorted);
-}
-
-function merge(left, right) {
-  let leftIndex = 0;
-  let rightIndex = 0;
-  let arrIndex = 0;
-  let arr = [];
-  while (leftIndex < left.length && rightIndex < right.length) {
-    if (left[leftIndex] < right[rightIndex]) {
-      arr.push(left[leftIndex]);
-      leftIndex++;
+var mergeAlternately = function (word1, word2) {
+  let i = 0;
+  let j = 0;
+  let k = 0;
+  let str = "";
+  while (i < word1.length && j < word2.length) {
+    if ((k + 1) % 2 === 0) {
+      str += word2[j];
+      j++;
+      k++;
     } else {
-      arr.push(right[rightIndex]);
-      rightIndex++;
-    }
-    arrIndex++;
-  }
-
-  while (leftIndex < left.length) {
-    arr.push(left[leftIndex]);
-    leftIndex++;
-    arrIndex++;
-  }
-
-  while (rightIndex < right.length) {
-    arr.push(right[rightIndex]);
-    rightIndex++;
-    arrIndex++;
-  }
-  return arr;
-}
-function binarySearchIndex(sortedArr, target) {
-  let start = 0;
-  let end = sortedArr.length - 1;
-
-  while (start <= end) {
-    let mid = Math.floor((start + end) / 2);
-    if (sortedArr[mid] < target) {
-      start = mid + 1;
-    } else {
-      end = mid - 1;
+      str += word1[i];
+      i++;
+      k++;
     }
   }
-  return start;
-}
-
-var smallerNumbersThanCurrent = function (nums) {
-  let sortedArr = mergeSort(nums);
-  let ans = [];
-  for (let i = 0; i < nums.length; i++) {
-    ans.push(binarySearchIndex(sortedArr, nums[i]));
+  while (j < word2.length) {
+    str += word2[j];
+    j++;
+    k++;
   }
-  return ans;
+
+  while (i < word1.length) {
+    str += word1[i];
+    i++;
+    k++;
+  }
+  return str;
 };
-const nums = [7, 7, 7, 7];
-console.log(smallerNumbersThanCurrent(nums, 2, nums.length));
+const word1 = "abcd";
+const word2 = "pq";
+console.log(mergeAlternately(word1, word2));
