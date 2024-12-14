@@ -1,10 +1,6 @@
-var restoreString = function (s, indices) {
-  let str = [];
-  for (let i = 0; i < indices.length; i++) {
-    str[indices[i]] = s[i];
-  }
-  return str.join("");
+var countSegments = function (s) {
+  let arr = s.split(" ").filter((word) => word !== "");
+  return arr;
 };
-const s = "codeleet";
-const indices = [4, 5, 6, 7, 0, 2, 1, 3];
-console.log(restoreString(s, indices));
+const s = ", , , ,        a, eaefa";
+console.log(countSegments(s));
