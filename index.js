@@ -1,6 +1,9 @@
-function quickSort(nums, left, right) {
-  let s = left;
-  let e = right;
+function quickSort(nums, low, high) {
+  let s = low;
+  let e = high;
+  if (s >= e) {
+    return; //  base case
+  }
   let mid = Math.floor((s + e) / 2);
   let pivot = nums[mid];
   while (s <= e) {
@@ -11,17 +14,15 @@ function quickSort(nums, left, right) {
       e--;
     }
     if (s <= e) {
-      //recheck start and end is start is greater than end than loop will end
       let temp = nums[s];
       nums[s] = nums[e];
       nums[e] = temp;
       s++;
       e--;
     }
-    // finally sort two halves
-    quickSort(nums, left, e);
-    quickSort(nums, s, right);
   }
+  quickSort(nums, low, e);
+  quickSort(nums, s, high);
   return nums;
 }
 const arr = [5, 4, 3, 2, 1];
