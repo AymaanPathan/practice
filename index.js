@@ -1,35 +1,25 @@
-var findErrorNums = function (nums) {
-  let arr = [];
+var uniqueOccurrences = function (arr) {
   let freq = {};
-
-  let sorted = nums.sort((a, b) => a - b);
-
-  for (let i = 0; i < sorted.length; i++) {
-    let num = sorted[i];
+  let counrFreq = {};
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
     if (!freq[num]) {
       freq[num] = 1;
     } else {
       freq[num]++;
     }
   }
-
-  for (let i = 0; i <= sorted.length; i++) {
-    let num = sorted[i];
-    if (freq[num] >= 2) {
-      arr.push(num);
-      break;
+  let freqArr = Object.values(freq);
+  for (let i = 0; i < freqArr.length; i++) {
+    let num = freqArr[i];
+    if (!counrFreq[num]) {
+      counrFreq[num] = 1;
+    } else {
+      counrFreq[num]++;
     }
+    if (counrFreq[num] >= 2) return false;
   }
-
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== i + 1 && nums[i + 1] !== i + 1) {
-      arr.push(i + 1);
-      break;
-    }
-  }
-
-  return arr;
+  return true;
 };
-
-const arr = [1, 1];
-console.log(findErrorNums(arr));
+const arr = [-3, 0, 1, -3, 1, 1, 1, -3, 10, 0];
+console.log(uniqueOccurrences(arr));
