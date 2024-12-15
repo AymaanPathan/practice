@@ -1,30 +1,22 @@
-var mostCommonWord = function (paragraph, banned) {
-  let freq = {};
-  let str = [];
-  let max = -Infinity;
-  const bannedSet = new Set(banned);
-  let wordArr = paragraph.toLowerCase().replace("!", "").split(/\W+/g);
-  if (wordArr.length === 2 || wordArr.length === 1) {
-    return wordArr[0];
+var distributeCandies = function (candyType) {
+  let num = [];
+  let n = 0;
+  let half = Math.floor(candyType.length / 2);
+  let i = 0;
+  let count = 0;
+  while (i <= candyType.length - 1 && n < half) {
+    if (!num.includes(candyType[i])) {
+      num.push(candyType[i]);
+      n++;
+    }
+    i++;
   }
-
-  for (let i = 0; i < wordArr.length; i++) {
-    let word = wordArr[i];
-    if (!freq[word] && !bannedSet.has(word) && word !== "") {
-      freq[word] = 1;
-    } else if (!bannedSet.has(word) && word !== "") {
-      freq[word]++;
+  for (let i = 0; i < num.length; i++) {
+    if (!num[i] !== num[i + 1]) {
+      count++;
     }
   }
-
-  Object.entries(freq).forEach(([key, value]) => {
-    if (value >= max) {
-      max = value;
-      str.push(key);
-    }
-  });
-  return str[str.length - 1];
+  return count;
 };
-const paragraph = "Bob hit a ball, the hit BALL flew far after it was hit";
-const banned = [];
-console.log(mostCommonWord(paragraph, banned));
+const candyType = [6, 6, 6, 6];
+console.log(distributeCandies(candyType));
