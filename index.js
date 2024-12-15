@@ -1,29 +1,35 @@
-function quickSort(nums, low, high) {
-  let s = low;
-  let e = high;
-  if (s >= e) {
-    return; //  base case
-  }
-  let mid = Math.floor((s + e) / 2);
-  let pivot = nums[mid];
-  while (s <= e) {
-    while (nums[s] < pivot) {
-      s++;
-    }
-    while (nums[e] > pivot) {
-      e--;
-    }
-    if (s <= e) {
-      let temp = nums[s];
-      nums[s] = nums[e];
-      nums[e] = temp;
-      s++;
-      e--;
+var findErrorNums = function (nums) {
+  let arr = [];
+  let freq = {};
+
+  let sorted = nums.sort((a, b) => a - b);
+
+  for (let i = 0; i < sorted.length; i++) {
+    let num = sorted[i];
+    if (!freq[num]) {
+      freq[num] = 1;
+    } else {
+      freq[num]++;
     }
   }
-  quickSort(nums, low, e);
-  quickSort(nums, s, high);
-  return nums;
-}
-const arr = [5, 4, 3, 2, 1];
-console.log(quickSort(arr, 0, arr.length - 1));
+
+  for (let i = 0; i <= sorted.length; i++) {
+    let num = sorted[i];
+    if (freq[num] >= 2) {
+      arr.push(num);
+      break;
+    }
+  }
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== i + 1 && nums[i + 1] !== i + 1) {
+      arr.push(i + 1);
+      break;
+    }
+  }
+
+  return arr;
+};
+
+const arr = [1, 1];
+console.log(findErrorNums(arr));
