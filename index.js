@@ -1,42 +1,18 @@
-function mergeSort(nums) {
-  if (nums.length === 1) {
-    return nums;
-  }
-  let mid = Math.floor(nums.length / 2);
-  let left = nums.slice(0, mid);
-  let right = nums.slice(mid);
-  let leftSorted = mergeSort(left);
-  let rightSorted = mergeSort(right);
-  return merge(leftSorted, rightSorted);
+function swap(nums, first, second) {
+  let temp = nums[first];
+  nums[first] = nums[second];
+  nums[second] = temp;
 }
 
-function merge(left, right) {
-  let i = 0;
-  let j = 0;
-  let indexArr = 0;
-  let arr = [];
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      arr.push(left[i]);
-      i++;
-    } else {
-      arr.push(right[j]);
-      j++;
+function bubbleSort(nums) {
+  for (let i = nums.length; i >= 0; i--) {
+    for (let j = 0; j < i; j++) {
+      if (nums[j] > nums[j + 1]) {
+        swap(nums, j, j + 1);
+      }
     }
-    indexArr++;
   }
-  while (i < left.length) {
-    arr.push(left[i]);
-    i++;
-    indexArr++;
-  }
-  while (j < right.length) {
-    arr.push(right[j]);
-    j++;
-    indexArr++;
-  }
-  return arr;
+  return nums;
 }
-
-const nums = [6, 5, 3, 2, 9];
-console.log(mergeSort(nums));
+const nums = [6, 5, 3, 2, 9, 10, 1, 34, 56, 78, 32];
+console.log(bubbleSort(nums));
