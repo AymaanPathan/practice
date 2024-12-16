@@ -1,17 +1,18 @@
-var repeatedNTimes = function (nums) {
-  let freq = {};
-  for (let i = 0; i < nums.length; i++) {
-    let num = nums[i];
-    if (!freq[num]) {
-      freq[num] = 1;
+var fizzBuzz = function (n) {
+  let arr = [];
+  for (let i = 1; i <= n; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      arr.push("FizzBuzz");
+    } else if (i % 3 === 0) {
+      arr.push("Fizz");
+    } else if (i % 5 === 0) {
+      arr.push("Buzz");
     } else {
-      freq[num]++;
-    }
-    if (freq[num] >= 2) {
-      return num;
+      arr.push(i.toString());
     }
   }
-  return -1;
+  return arr;
 };
-const nums = [5, 1, 5, 2, 5, 3, 5, 4];
-console.log(repeatedNTimes(nums));
+
+const n = 5;
+console.log(fizzBuzz(n));
