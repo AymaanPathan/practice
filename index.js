@@ -1,10 +1,11 @@
-function reverseStr(str, index = str.length - 1) {
-  if (index < 0) {
-    return "";
-  } else {
-    return str[index] + reverseStr(str, index - 1);
+var deleteDuplicates = function (head) {
+  let temp = head;
+  while (temp && temp.next) {
+    if (temp.val === temp.next.val) {
+      temp.next = temp.next.next;
+    } else {
+      temp = temp.next;
+    }
   }
-}
-const inputStr = "hello";
-const reversedStr = reverseStr(inputStr);
-console.log(reversedStr);
+  return head;
+};

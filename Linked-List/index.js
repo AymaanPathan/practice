@@ -7,10 +7,16 @@ class Node {
 
 class LinkedList {
   constructor(val) {
-    let newNode = new Node(val);
-    this.head = newNode;
-    this.tail = newNode;
-    this.length = 1;
+    if (val !== undefined) {
+      let newNode = new Node(val);
+      this.head = newNode;
+      this.tail = newNode;
+      this.length = 1;
+    } else {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+    }
   }
 
   push(val) {
@@ -26,6 +32,7 @@ class LinkedList {
     return this;
   }
   pop() {
+    //edge case for single
     let temp = this.head;
     let pre = this.head;
     if (!this.head) {
@@ -39,6 +46,7 @@ class LinkedList {
     this.tail.next = null;
     this.length--;
     if (this.length === 0) {
+      // for single node
       this.head = null;
       this.tail = null;
     }
@@ -57,6 +65,7 @@ class LinkedList {
     return this;
   }
   shift() {
+    // edge case for single node
     if (!this.head) {
       return undefined;
     }
@@ -65,6 +74,7 @@ class LinkedList {
     temp.next = null;
     this.length--;
     if (this.length === 0) {
+      //for single node
       this.tail = null;
     }
     return temp;
@@ -194,7 +204,7 @@ class LinkedList {
   }
 }
 
-let linkedList = new LinkedList(1);
+let linkedList = new LinkedList();
 linkedList.push(3);
 linkedList.push(4);
 linkedList.push(7);
@@ -202,4 +212,4 @@ linkedList.push(1);
 linkedList.push(2);
 linkedList.push(6);
 
-console.log(linkedList.deleteMiddle());
+console.log(linkedList.get(12));
