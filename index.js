@@ -1,9 +1,12 @@
-var middleNode = function (head) {
-  let slow = head;
-  let fast = head;
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
+var reverseList = function (head) {
+  let prev = null;
+  let pres = head;
+  let next = null;
+  while (pres !== null) {
+    next = pres.next;
+    pres.next = prev;
+    prev = pres;
+    pres = next;
   }
-  return slow;
+  return prev;
 };
