@@ -1,41 +1,22 @@
-function reverse(head) {
-  let prev = null;
-  let pres = head;
-  let next = null;
-  while (pres !== null) {
-    next = pres.next;
-    pres.next = prev;
-    prev = pres;
-    pres = next;
-  }
-  return prev;
-}
-
-function findMiddle(head) {
+var hasCycle = function (head) {
   let slow = head;
   let fast = head;
-  while (fast !== null && fast.next !== null) {
+  while (slow && slow.next && fast && fast.next) {
     slow = slow.next;
     fast = fast.next.next;
-  }
-  return slow;
-}
-
-function isPalindrome(head) {
-  let mid = findMiddle(head);
-  let headSecond = reverse(mid);
-  let reverseHead = headSecond;
-
-  while (head !== null && headSecond !== null) {
-    if (head.val !== headSecond.val) {
-      break;
+    if (slow === fast) {
+      return true;
     }
-    head = head.next;
-    headSecond = headSecond.next;
   }
-  if (head === null || headSecond === null) {
-    return true;
-  } else {
-    return false;
-  }
+  return false;
+};
+
+function calculateLength(meetPoint) {
+  let current = meetPoint;
+  length = 0;
+  do {
+    current = current.next;
+    length++;
+  } while (current !== meetPoint);
+  return length;
 }
