@@ -184,23 +184,22 @@ class LinkedList {
     }
     return this.head;
   }
-  isPalindrome() {
-    let arr = [];
-    let current = this.head;
-    while (current) {
-      arr.push(current.val);
-      current = current.next;
-    }
-    let start = 0;
-    let end = arr.length - 1;
-    while (start <= end) {
-      if (arr[start] !== arr[end]) {
-        return false;
+  isPalindrome(head) {
+    let mid = findMiddle(head);
+    let headSecond = reverse(mid);
+
+    while (head !== null && headSecond !== null) {
+      if (head.val !== headSecond.val) {
+        break;
       }
-      start++;
-      end--;
+      head = head.next;
+      headSecond = headSecond.next;
     }
-    return true;
+    if (head === null || headSecond === null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
