@@ -13,26 +13,26 @@ var sortList = function(head) {
 
 function merge(l1,l2){
   let dummy = new ListNode(0);
-  let current = dummy;
+  let head = dummy;
   while(l1 && l2){
     if(l1.val <l2.val){
-      current.next = l1
+      dummy.next = l1
       l1 = l1.next;
     } else{
-      current.next = l2;
+      dummy.next = l2;
       l2 = l2.next
     }
-    current = current.next
+    dummy = dummy.next
   }
-  if(l1) current.next = l1
-  if(l2) current.next = l2
-  return dummy.next;
+  if(l1) dummy.next = l1
+  if(l2) dummy.next = l2
+  return head.next;
 }
 
 function findMiddle(head){
   let slow = head;
   let fast = head;
-  while(fast!==null && fast.next!==null){
+  while(fast!==null && fast.next!==null && fast.next.next!==null){
     slow = slow.next;
     fast = fast.next.next
   }
