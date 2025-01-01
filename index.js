@@ -1,18 +1,16 @@
-var lengthOfCycle = function(head) {
-    let slow = head;
-    let fast = head;
-    let len =0
-    while(fast && fast.next!==null){
-      slow = slow.next;
-      fast = fast.next.next;
-      if(slow===fast){
-        let temp = slow;
-        do{
-          temp = temp.next
-          len++
-        }while(temp!==slow)
-          return len
-      }
+var oddEvenList = function(head) {
+      if (!head || !head.next) {
+        return head;
     }
-    return 0
+    let odd = head;
+    let even  = head.next
+    let evenHead =even;
+    while(even && even.next){
+      odd.next = odd.next.next;
+      even.next = even.next.next;
+      odd = odd.next;
+      even = even.next
+    }
+    odd.next =evenHead;
+    return head;
 };
