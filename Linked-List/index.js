@@ -211,4 +211,4 @@ linkedList.push(1);
 linkedList.push(2);
 linkedList.push(6);
 
-console.log(linkedList.get(12));
+console.log(linkedList.remove(2));
