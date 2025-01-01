@@ -1,25 +1,11 @@
-var isHappy = function(n) {
-    let slow = n;
-    let fast = n;
-    do{
-      slow = findSquare(slow);
-      fast = findSquare(findSquare(fast))
-    } while(slow!==fast);
-    if(slow===1){
-      return true
-    } else{
-      return false
+var reverseList = function(head) {
+    let prev = null;
+    let pres = head;
+    while(pres){
+        let next = pres.next;
+        pres.next = prev;
+        prev = pres;
+        pres = next;
     }
+    return prev
 };
-
-function findSquare(num){
-  let ans = 0;
-while(num>=1){
-  let lastDigit = num %10;
-  ans+= lastDigit* lastDigit;
-      num = Math.floor(num / 10);;
-}
-return ans
-}
-const num = 19;
-console.log(isHappy(num))
