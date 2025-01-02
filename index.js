@@ -1,21 +1,25 @@
-var partition = function(head, x) {
-    let small = new ListNode(0);
-    let larger = new ListNode(0);
-    let smallPointer = small;
-    let largerPointer = larger
-
-
-    while(head){
-      if(head.val < x){
-        smallPointer.next = head;
-        smallPointer = smallPointer.next
-      } else{
-        largerPointer.next = head;
-        largerPointer = largerPointer.next
-      }
-      head = head.next
+class Solution {
+    getKthFromLast(head, k) {
+       head = this.reverse(head);
+      let temp = head;
+       for(let i=1;i<k;i++){
+           if(temp!==null){
+           temp = temp.next
+           } else {
+                return -1; 
+            }
+       }
+       return temp!==null ? temp.data  :-1
     }
-    largerPointer.next = null;
-    smallPointer.next = larger.next
-    return small.next
-};
+    reverse(head){
+        let prev = null;
+        let pres = head;
+        while(pres){
+            let next = pres.next;
+            pres.next = prev
+            prev = pres;
+            pres = next;
+        }
+    return prev
+    }
+}
