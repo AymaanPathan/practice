@@ -1,16 +1,21 @@
-var oddEvenList = function(head) {
-      if (!head || !head.next) {
-        return head;
+var partition = function(head, x) {
+    let small = new ListNode(0);
+    let larger = new ListNode(0);
+    let smallPointer = small;
+    let largerPointer = larger
+
+
+    while(head){
+      if(head.val < x){
+        smallPointer.next = head;
+        smallPointer = smallPointer.next
+      } else{
+        largerPointer.next = head;
+        largerPointer = largerPointer.next
+      }
+      head = head.next
     }
-    let odd = head;
-    let even  = head.next
-    let evenHead =even;
-    while(even && even.next){
-      odd.next = odd.next.next;
-      even.next = even.next.next;
-      odd = odd.next;
-      even = even.next
-    }
-    odd.next =evenHead;
-    return head;
+    largerPointer.next = null;
+    smallPointer.next = larger.next
+    return small.next
 };
