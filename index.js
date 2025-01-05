@@ -1,15 +1,30 @@
 class Solution {
-    insertAtEnd(head, x) {
-        let newNode = new Node(x)
-        if(!head){
-            head = newNode;
-        }
-        let temp = head;
-        while(temp.next){
-            temp = temp.next;
-        }
-        temp.next = newNode;
-        newNode.next =null
-        return head;
+      deleteNode(head, x) {
+        
+         if (!head) {
+        return null; 
     }
+
+    if (x === 1) {
+        return head.next;
+    }
+        
+        let temp = head;
+        let before = this.get(head,x-1);
+
+
+        before.next =  before.next.next
+        return head
+    }
+    
+     get(head,index) {
+    let temp = head
+    if (index < 0 || index >= this.length) {
+      return undefined;
+    }
+    for (let i = 1; i < index; i++) {
+      temp = temp.next;
+    }
+    return temp;
+  }
 }
