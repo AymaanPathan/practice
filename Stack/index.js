@@ -28,7 +28,18 @@ class Stack {
     this.length++;
     return this;
   }
+  pop() {
+    if (this.length == 0 || !this.top) {
+      return undefined;
+    }
+    let temp = this.top;
+    this.top = this.top.next;
+    temp.next = null;
+    this.length--;
+    return temp;
+  }
 }
 const stack = new Stack(1);
 stack.Push(2);
+stack.pop();
 console.log(stack);
