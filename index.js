@@ -1,8 +1,8 @@
-function nearestLargerToLeft(arr) {
+function nearestSmallerToLeft(arr) {
   let stack = new Stack();
   let nums = [];
   for (let i = 0; i < arr.length; i++) {
-    while (!stack.isEmpty() && stack.peek() <= arr[i]) {
+    while (!stack.isEmpty() && stack.peek() >= arr[i]) {
       stack.pop();
     }
     if (!stack.isEmpty()) {
