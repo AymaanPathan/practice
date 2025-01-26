@@ -1,58 +1,13 @@
-var MinStack = function () {
-  this.stack = [];
-  this.minStack = [];
-};
-
-/**
- * @param {number} val
- * @return {void}
- */
-MinStack.prototype.push = function (val) {
-  this.stack.push(val);
-  if (
-    this.minStack.length === 0 ||
-    val <= this.minStack[this.minStack.length - 1]
-  ) {
-    this.minStack.push(val);
+var clearDigits = function (s) {
+  let stack = [];
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
+    let num = "";
+    if (char >= "0" && char <= "9") {
+      stack.pop();
+    } else {
+      stack.push(char);
+    }
   }
+  return stack.join("");
 };
-
-/**
- * @return {void}
- */
-MinStack.prototype.pop = function () {
-  if (!this.stack.length) {
-    return null;
-  }
-  let temp = this.stack.pop();
-  if (this.minStack[this.minStack.length - 1] === temp) {
-    this.minStack.pop();
-  }
-  return temp;
-};
-
-/**
- * @return {number}
- */
-MinStack.prototype.top = function () {
-  return this.stack[this.stack.length - 1];
-};
-
-/**
- * @return {number}
- */
-MinStack.prototype.getMin = function () {
-  if (!this.minStack.length) {
-    return null;
-  }
-  return this.minStack[this.minStack.length - 1];
-};
-
-/**
- * Your MinStack object will be instantiated and called as such:
- * var obj = new MinStack()
- * obj.push(val)
- * obj.pop()
- * var param_3 = obj.top()
- * var param_4 = obj.getMin()
- */
