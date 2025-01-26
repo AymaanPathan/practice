@@ -1,18 +1,58 @@
-class Solution {
-  deleteElement(arr, k) {
-    let stack = [];
-    let count = 0;
-    for (let i = 0; i < arr.length; i++) {
-      while (
-        count < k &&
-        stack.length > 0 &&
-        stack[stack.length - 1] < arr[i]
-      ) {
-        stack.pop();
-        count++;
-      }
-      stack.push(arr[i]);
-    }
-    return stack;
+var MinStack = function () {
+  this.stack = [];
+  this.minStack = [];
+};
+
+/**
+ * @param {number} val
+ * @return {void}
+ */
+MinStack.prototype.push = function (val) {
+  this.stack.push(val);
+  if (
+    this.minStack.length === 0 ||
+    val <= this.minStack[this.minStack.length - 1]
+  ) {
+    this.minStack.push(val);
   }
-}
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function () {
+  if (!this.stack.length) {
+    return null;
+  }
+  let temp = this.stack.pop();
+  if (this.minStack[this.minStack.length - 1] === temp) {
+    this.minStack.pop();
+  }
+  return temp;
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function () {
+  return this.stack[this.stack.length - 1];
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function () {
+  if (!this.minStack.length) {
+    return null;
+  }
+  return this.minStack[this.minStack.length - 1];
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(val)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */
