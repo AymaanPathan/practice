@@ -1,13 +1,15 @@
-var clearDigits = function (s) {
+var reversePrefix = function (word, ch) {
   let stack = [];
-  for (let i = 0; i < s.length; i++) {
-    let char = s[i];
-    let num = "";
-    if (char >= "0" && char <= "9") {
-      stack.pop();
-    } else {
-      stack.push(char);
+  let isCh = false;
+  for (let i = 0; i < word.length; i++) {
+    let char = word[i];
+    stack.push(char);
+    if (char === ch) {
+      isCh = true;
+      break;
     }
   }
-  return stack.join("");
+  if (!isCh) return word;
+  let reversedPart = stack.reverse().join("");
+  return reversedPart + word.slice(stack.length);
 };
