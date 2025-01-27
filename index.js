@@ -1,22 +1,22 @@
-function reverseStringUsingStack(str) {
-  // Initialize an empty stack
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function (x) {
+  let numStr = x.toString();
   let stack = [];
-
-  // Push all characters of the string onto the stack
-  for (let char of str) {
-    stack.push(char);
+  for (let i = 0; i < numStr.length; i++) {
+    stack.push(numStr[i]);
   }
-
-  // Pop characters from the stack to reverse
-  let reversedStr = "";
+  let ans = "";
   while (stack.length > 0) {
-    reversedStr += stack.pop();
+    ans += stack.pop();
   }
-
-  return reversedStr;
-}
-
-// Test the function
-const inputStr = "hello";
-console.log("Original String:", inputStr);
-console.log("Reversed String:", reverseStringUsingStack(inputStr));
+  if (
+    parseInt(ans, 10) > Math.pow(2, 31) ||
+    parseInt(ans, 10) < Math.pow(-2, 31)
+  ) {
+    return 0;
+  }
+  return ans > 0 ? parseInt(ans, 10) : -parseInt(ans, 10);
+};
