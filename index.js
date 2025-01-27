@@ -1,15 +1,18 @@
-var reversePrefix = function (word, ch) {
-  let stack = [];
-  let isCh = false;
-  for (let i = 0; i < word.length; i++) {
-    let char = word[i];
-    stack.push(char);
-    if (char === ch) {
-      isCh = true;
-      break;
+var isValid = function(s) {
+    let stack =[];
+    for(let i=0;i<s.length;i++){
+        let chr = s[i];
+        if(chr==="("){
+            stack.push(")")
+        }else if(chr==="{"){
+            stack.push("}")
+        }else if(chr==="["){
+            stack.push("]")
+        }else{
+            if(stack.pop() !== chr){
+                return false
+            }
+        }
     }
-  }
-  if (!isCh) return word;
-  let reversedPart = stack.reverse().join("");
-  return reversedPart + word.slice(stack.length);
+   return stack.length===0
 };
