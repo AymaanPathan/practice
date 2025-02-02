@@ -1,36 +1,23 @@
-function infixToPostFix(str) {
-  let ans = "";
+function postFixToInfix(s) {
   let stack = [];
-  const precedence = { "^": 3, "*": 2, "/": 2, "+": 1, "-": 1 };
-  for (let i = 0; i < str.length; i++) {
-    let chr = str[i];
+  for (let i = 0; i < s.length; i++) {
+    let chr = s[i];
     if (
       (chr >= "A" && chr <= "Z") ||
       (chr >= "a" && chr <= "z") ||
       (chr >= "0" && chr <= "9")
     ) {
-      ans += chr;
-    } else if (chr == "(") {
       stack.push(chr);
-    } else if (chr === ")") {
-      while (stack.length !== 0 && stack[stack.length - 1] !== "(") {
-        ans += stack.pop();
-      }
-      stack.pop();
     } else {
-      while (
-        stack.length !== 0 &&
-        precedence[stack[stack.length - 1]] >= precedence[chr]
-      ) {
-        ans += stack.pop();
-      }
-      stack.push(chr);
+      let t1 = stack[stack.length - 1];
+      stack.pop();
+      let t2 = stack[stack.length - 1];
+      stack.pop();
+      let con = "(" + t2 + chr + t1 + ")";
+      stack.push(con);
     }
   }
-  while (stack.length !== 0) {
-    // take all operator from stack in last
-    ans += stack.pop();
-  }
-  return ans;
+  return stack[stack.length - 1];
 }
-console.log(infixToPostFix("a+b*(c^d-e)"));
+
+console.log(postFixToInfix("AB-DE+F*/"));
