@@ -1,35 +1,20 @@
-function infixToPostFix(str) {
-  let stack = [];
-  let ans = "";
-  const precedence = { "^": 3, "*": 2, "/": 2, "+": 1, "-": 1 };
-  for (let i = 0; i < str.length; i++) {
-    let chr = str[i];
-    if (
-      (chr >= "A" && chr <= "Z") ||
-      (chr >= "a" && chr <= "z") ||
-      (chr >= "0" && chr <= "9")
-    ) {
-      ans += chr;
-    } else if (chr === "(") {
-      stack.push(chr);
-    } else if (chr === ")") {
-      while (stack.length !== 0 && stack[stack.length - 1] !== "(") {
-        ans += stack.pop();
-      }
-      stack.pop();
+var topKFrequent = function (nums, k) {
+  let freq = {};
+  let ans = [];
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    if (!freq[num]) {
+      freq[num] = 1;
     } else {
-      while (
-        stack.length !== 0 &&
-        precedence[stack[stack.length - 1]] >= precedence[chr]
-      ) {
-        ans += stack.pop();
-      }
-      stack.push(chr);
+      freq[num]++;
     }
   }
-  while (stack.length !== 0) {
-    ans += stack.pop();
+
+  const entries = Object.entries(freq).sort((a, b) => b[1] - a[1]);
+  for (let i = 0; i < k; i++) {
+    ans.push(parseInt(entries[i][0]));
   }
   return ans;
-}
-console.log(infixToPostFix("a+b*(c^d-e)"));
+};
+const nums = [1, 1, 1, 2, 2, 3];
+console.log(topKFrequent(nums, 2));
