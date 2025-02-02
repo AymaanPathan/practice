@@ -1,22 +1,36 @@
-/**
- * @param {number} x
- * @return {number}
- */
-var reverse = function (x) {
-  let numStr = x.toString();
-  let stack = [];
-  for (let i = 0; i < numStr.length; i++) {
-    stack.push(numStr[i]);
-  }
+function infixToPostFix(str) {
   let ans = "";
-  while (stack.length > 0) {
+  let stack = [];
+  const precedence = { "^": 3, "*": 2, "/": 2, "+": 1, "-": 1 };
+  for (let i = 0; i < str.length; i++) {
+    let chr = str[i];
+    if (
+      (chr >= "A" && chr <= "Z") ||
+      (chr >= "a" && chr <= "z") ||
+      (chr >= "0" && chr <= "9")
+    ) {
+      ans += chr;
+    } else if (chr == "(") {
+      stack.push(chr);
+    } else if (chr === ")") {
+      while (stack.length !== 0 && stack[stack.length - 1] !== "(") {
+        ans += stack.pop();
+      }
+      stack.pop();
+    } else {
+      while (
+        stack.length !== 0 &&
+        precedence[stack[stack.length - 1]] >= precedence[chr]
+      ) {
+        ans += stack.pop();
+      }
+      stack.push(chr);
+    }
+  }
+  while (stack.length !== 0) {
+    // take all operator from stack in last
     ans += stack.pop();
   }
-  if (
-    parseInt(ans, 10) > Math.pow(2, 31) ||
-    parseInt(ans, 10) < Math.pow(-2, 31)
-  ) {
-    return 0;
-  }
-  return ans > 0 ? parseInt(ans, 10) : -parseInt(ans, 10);
-};
+  return ans;
+}
+console.log(infixToPostFix("a+b*(c^d-e)"));
