@@ -1,20 +1,14 @@
-// Bind
-const me = {
-  firstName: "Aymaan",
-  lastName: "Pathan",
-  printFullName: function (homeTown) {
-    console.log(
-      `My Name ${this.firstName} And LastName is ${this.lastName} From ${homeTown}`
-    );
+// Output based Question -1
+// What is the output of this code the answer is 24 because?
+// the call method will look for age in person2 because we say call getAge in person2
+// but if we remove call method it will give 20
+const myName = {
+  name: "Aymaan",
+  age: 20,
+  getAge: function () {
+    return this.age;
   },
 };
 
-const frnd = {
-  firstName: "Jack",
-  lastName: "Clinton",
-};
-
-// Bind Will Return us a Method Which Can Call Later
-// Bind Give You The Copy Of That Method
-const printData = me.printFullName.bind(frnd, "India");
-printData();
+const person2 = { age: 1 };
+console.log(myName.getAge.call(person2)); // this will check person2
