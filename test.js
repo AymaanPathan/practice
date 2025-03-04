@@ -3,8 +3,8 @@ const myName = {
   lastName: "pathan",
 };
 
-const printFullName = function () {
-  return `${this.firstName} ${this.lastName}`;
+const printFullName = function (homeTown) {
+  return `${this.firstName} ${this.lastName} From ${homeTown}`;
 };
 const name2 = {
   firstName: "Jack",
@@ -12,4 +12,4 @@ const name2 = {
 };
 
 // Function borrowing
-console.log(printFullName.call(name2));
+console.log(printFullName.call(name2, "India"));
