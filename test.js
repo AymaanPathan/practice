@@ -1,3 +1,4 @@
+// Bind
 const me = {
   firstName: "Aymaan",
   lastName: "Pathan",
@@ -13,7 +14,7 @@ const frnd = {
   lastName: "Clinton",
 };
 
-// Apply is same as Call Method Just Difference is Passsing An Args
-// 1. in Call We just pass normally
-// 2. in Bind Wen Pass In An Array list
-me.printFullName.apply(me, ["India"]);
+// Bind Will Return us a Method Which Can Call Later
+// Bind Give You The Copy Of That Method
+const printData = me.printFullName.bind(frnd, "India");
+printData();
