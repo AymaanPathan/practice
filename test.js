@@ -59,6 +59,7 @@ var longestConsecutive = function (nums) {
     if (sorted[i] + 1 === sorted[i + 1]) {
       currentLength++;
     } else if (sorted[i] !== sorted[i + 1]) {
+      // if not same // if same if statement will take care of it
       longest = Math.max(longest, currentLength);
       currentLength = 1;
     }
