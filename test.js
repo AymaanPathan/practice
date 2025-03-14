@@ -18,4 +18,4 @@ function maxSubArray(nums, k) {
   return max;
 }
 const nums = [1, 2, 3, 4, 5, 6];
-console.log(maxSubArray(nums, 2));
+console.log(maxSubArray(nums, 4));
