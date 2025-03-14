@@ -1,21 +1,28 @@
-function maxSubArray(nums, k) {
-  let ans = [];
+function findMaxValueSubarray(nums, k) {
   let start = 0;
   let end = 0;
   let sum = 0;
-  let max = 0;
+  let ans = [];
+  let max = -Infinity;
+
   while (end < nums.length) {
     sum = sum + nums[end];
     if (end - start + 1 < k) {
       end++;
     } else if (end - start + 1 === k) {
-      max = Math.max(max, sum); // found window first time
-      sum = sum - nums[start]; // remove first element after finding first max[max for now]
-      start++; // move i after finding first sum
-      end++; // move i after finding first sum
+      if (sum > max) {
+        max = sum;
+        ans = [];
+        for (let i = start; i <= end; i++) {
+          ans.push(nums[i]);
+        }
+      }
+      sum = sum - nums[start];
+      start++;
+      end++;
     }
   }
-  return max;
+  return ans;
 }
-const nums = [1, 2, 3, 4, 5, 6];
-console.log(maxSubArray(nums, 4));
+const nums = [1, 2];
+console.log(findMaxValueSubarray(nums, 2));
