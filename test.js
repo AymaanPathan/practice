@@ -1,20 +1,21 @@
-function findSubarraysSlidingWindow(arr, k) {
-  let window = [];
+function slidingWindowSubArray(nums, k) {
   let ans = [];
-  for (let i = 0; i < k; i++) {
-    window.push(arr[i]);
-  }
-  ans.push([...window]);
-
-  for (let i = k; i < arr.length; i++) {
-    window.shift();
-    window.push(arr[i]);
-    ans.push([...window]);
+  let start = 0;
+  let end = 0;
+  while (end < nums.length) {
+    if (end - start + 1 < k) {
+      end++;
+    } else if (end - start + 1 === k) {
+      let sub = [];
+      for (let i = start; i <= end; i++) {
+        sub.push(nums[i]);
+      }
+      ans.push(sub);
+      start++;
+      end++;
+    }
   }
   return ans;
 }
-
-// Example usage:
-let arr = [1, 2, 3, 4, 5];
-let k = 2;
-console.log(findSubarraysSlidingWindow(arr, k));
+const nums = [1, 2, 3, 4, 5, 6];
+console.log(slidingWindowSubArray(nums, 2));
