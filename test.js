@@ -1,4 +1,4 @@
-function findMaxValueSubarray(nums, k) {
+function findMaxValueSubarrayElement(nums, k) {
   let start = 0;
   let end = 0;
   let sum = 0;
@@ -24,5 +24,5 @@ function findMaxValueSubarray(nums, k) {
   }
   return ans;
 }
-const nums = [1, 2];
-console.log(findMaxValueSubarray(nums, 2));
+const nums = [1, 2, 3, 4, 5, 6];
+console.log(findMaxValueSubarrayElement(nums, 4));

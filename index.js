@@ -1,23 +1,29 @@
-function postFixToInfix(s) {
-  let stack = [];
-  for (let i = 0; i < s.length; i++) {
-    let chr = s[i];
-    if (
-      (chr >= "A" && chr <= "Z") ||
-      (chr >= "a" && chr <= "z") ||
-      (chr >= "0" && chr <= "9")
-    ) {
-      stack.push(chr);
+function firstNegativeInEveryWindow(nums, k) {
+  let start = 0;
+  let end = 0;
+  let allNegatives = [];
+  let ans = [];
+  while (end < nums.length) {
+    if (nums[end] < 0) {
+      allNegatives.push(nums[end]);
+    }
+    if (end - start + 1 < k) {
+      end++;
     } else {
-      let t1 = stack[stack.length - 1];
-      stack.pop();
-      let t2 = stack[stack.length - 1];
-      stack.pop();
-      let con = "(" + t2 + chr + t1 + ")";
-      stack.push(con);
+      if (allNegatives.length == 0) {
+        ans.push(0);
+      } else {
+        ans.push(allNegatives[0]);
+        if (nums[start] < 0) {
+          allNegatives.shift();
+        }
+      }
+      start++;
+      end++;
     }
   }
-  return stack[stack.length - 1];
+  return ans;
 }
-
-console.log(postFixToInfix("AB-DE+F*/"));
+const arr = [12, -1, -7, 8, -15, 30, 16, 28];
+const k = 3;
+console.log(firstNegativeInEveryWindow(arr, k));
