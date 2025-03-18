@@ -1,7 +1,7 @@
-var findAllAnagramCount = function (s, p) {
+var findAnagrams = function (s, p) {
   let start = 0;
   let end = 0;
-  let ans = 0;
+  let ans = [];
   let freq = {};
 
   for (let i = 0; i < p.length; i++) {
@@ -25,7 +25,7 @@ var findAllAnagramCount = function (s, p) {
     }
     if (end - start + 1 === p.length) {
       if (count == 0) {
-        ans++;
+        ans.push(start);
       }
       let startChar = s[start];
       if (startChar in freq) {
@@ -40,6 +40,6 @@ var findAllAnagramCount = function (s, p) {
   }
   return ans;
 };
-const s = "cbaebabacd";
-const p = "abc";
+const s = "abab";
+const p = "ab";
 console.log(findAllAnagramCount(s, p));
