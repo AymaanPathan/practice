@@ -1,45 +1,40 @@
-var findAnagrams = function (s, p) {
-  let start = 0;
-  let end = 0;
-  let ans = [];
-  let freq = {};
+function maxSlidingWindow(nums, k) {
+  let result = [];
+  let deque = []; // Useful indexes store karega
+  let start = 0,
+    end = 0; // Start and End window ka track rakhenge
 
-  for (let i = 0; i < p.length; i++) {
-    let chr = p[i];
-    if (!freq[chr]) {
-      freq[chr] = 1;
-    } else {
-      freq[chr]++;
+  while (end < nums.length) {
+    // Step 1: Chhoti values hatao jo naye element se chhoti hain
+    while (deque.length > 0 && nums[deque[deque.length - 1]] <= nums[end]) {
+      deque.pop();
     }
-  }
 
-  let count = Object.keys(freq).length;
+    // Step 2: Current element ka index add karo
+    deque.push(end);
 
-  while (end < s.length) {
-    let chr = s[end];
-    if (chr in freq) {
-      freq[chr]--;
-      if (freq[chr] === 0) {
-        count--;
+    // Step 3: Window size check karo
+    if (end - start + 1 == k) {
+      // Window full ho gayi?
+      result.push(nums[deque[0]]); // Max element (front of deque)
+
+      // Step 4: Agar front index window se bahar ho gaya, hatao
+      if (deque[0] == start) {
+        deque.shift();
       }
-    }
-    if (end - start + 1 === p.length) {
-      if (count == 0) {
-        ans.push(start);
-      }
-      let startChar = s[start];
-      if (startChar in freq) {
-        if (freq[startChar] === 0) {
-          count++;
-        }
-        freq[startChar]++;
-      }
+
+      // Step 5: Window ko slide karo
       start++;
     }
+
+    // Move end forward
     end++;
   }
-  return ans;
-};
-const s = "abab";
-const p = "ab";
-console.log(findAllAnagramCount(s, p));
+
+  return result;
+}
+
+// Example Usage
+let nums = [1, 3, -1, -3, 5, 3, 6, 7];
+let k = 3;
+console.log(maxSlidingWindow(nums, k));
