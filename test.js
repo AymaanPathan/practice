@@ -1,31 +1,31 @@
-var minSubArrayLen = function (target, nums) {
+var maxSlidingWindow = function (nums, k) {
   let start = 0;
   let end = 0;
-  let maxSize = Infinity;
-  let sum = 0;
+  let ans = [];
+  let maxArray = [];
   while (end < nums.length) {
-    sum = sum + nums[end];
-    if (sum < target) {
-      end++;
-    } else if (sum === target) {
-      if (maxSize > end - start + 1) {
-        maxSize = end - start + 1;
-      }
-      end++;
+    while (
+      maxArray.length > 0 &&
+      nums[maxArray[maxArray.length - 1]] < nums[end]
+    ) {
+      maxArray.pop();
     }
-    if (sum > target) {
-      while (sum >= target) {
-        if (maxSize > end - start + 1) {
-          maxSize = end - start + 1;
-        }
-        sum = sum - nums[start];
-        start++;
+    maxArray.push(end);
+
+    if (end - start + 1 < k) {
+      end++;
+    } else if (end - start + 1 == k) {
+      ans.push(nums[maxArray[0]]);
+      if (maxArray[0] === start) {
+        maxArray.shift();
       }
+      start++;
       end++;
     }
   }
-  return maxSize;
+  return ans;
 };
-const nums = [2, 3, 1, 2, 4, 3];
-const target = 7;
-console.log(minSubArrayLen(target, nums));
+
+let nums = [1, 3, -1, -3, 5, 3, 6, 7];
+let k = 3;
+console.log(maxSlidingWindow(nums, k));
