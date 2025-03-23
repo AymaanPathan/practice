@@ -1,17 +1,24 @@
-var numOfSubarrays = function (arr, k, threshold) {
+var MinimumElementinEveryWindow = function (nums, k) {
   let start = 0;
   let end = 0;
-  let sum = 0;
-  let ans = 0;
-  while (end < arr.length) {
-    sum = sum + arr[end];
+  let minArray = [];
+  let ans = [];
+  while (end < nums.length) {
+    while (
+      minArray.length > 0 &&
+      nums[minArray[minArray.length - 1]] > nums[end]
+    ) {
+      minArray.pop();
+    }
+    minArray.push(end);
     if (end - start + 1 < k) {
       end++;
     } else if (end - start + 1 === k) {
-      if (sum / k >= threshold) {
-        ans++;
+      ans.push(nums[minArray[0]]);
+
+      if (minArray[0] === start) {
+        minArray.shift();
       }
-      sum = sum - arr[start];
       start++;
       end++;
     }
@@ -19,7 +26,6 @@ var numOfSubarrays = function (arr, k, threshold) {
   return ans;
 };
 
-const arr = [11, 13, 17, 23, 29, 31, 7, 5, 2, 3];
+const arr = [10, 5, 2, 7, 8, 7];
 const k = 3;
-const threshold = 5;
-console.log(numOfSubarrays(arr, k, threshold));
+console.log(MinimumElementinEveryWindow(arr, k));
