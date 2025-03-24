@@ -1,33 +1,24 @@
-var CountDistinctElementsinEveryWindow = function (nums, k) {
+var WindowwithTargetSumExistence = function (nums, k, target) {
   let start = 0;
   let end = 0;
-  let ans = [];
-  let freq = {};
+  let sum = 0;
   while (end < nums.length) {
-    let num = nums[end];
-    if (!freq[num]) {
-      freq[num] = 1;
-    } else {
-      freq[num]++;
-    }
+    sum = sum + nums[end];
     if (end - start + 1 < k) {
       end++;
-    } else if (end - start + 1 == k) {
-      ans.push(Object.keys(freq).length);
-
-      let startNum = nums[start];
-      freq[startNum]--;
-
-      if (freq[startNum] === 0) {
-        delete freq[startNum];
+    } else if (end - start + 1 === k) {
+      if (sum === target) {
+        return true;
       }
-      start++;
-      end++;
+      sum = sum - nums[start];
     }
+    start++;
+    end++;
   }
-  return ans;
+  return false;
 };
-const arr = [1, 2, 1, 3, 4, 2, 3];
-const k = 4;
+const arr = [1, 2, 3];
+const k = 5;
+const target = 6;
 
-console.log(CountDistinctElementsinEveryWindow(arr, k));
+console.log(WindowwithTargetSumExistence(arr, k, target));
