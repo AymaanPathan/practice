@@ -1,23 +1,25 @@
-var MinimumElementinEveryWindow = function (nums, k) {
+var CountDistinctElementsinEveryWindow = function (nums, k) {
   let start = 0;
   let end = 0;
-  let minArray = [];
   let ans = [];
+  let freq = {};
   while (end < nums.length) {
-    while (
-      minArray.length > 0 &&
-      nums[minArray[minArray.length - 1]] > nums[end]
-    ) {
-      minArray.pop();
+    let num = nums[end];
+    if (!freq[num]) {
+      freq[num] = 1;
+    } else {
+      freq[num]++;
     }
-    minArray.push(end);
     if (end - start + 1 < k) {
       end++;
-    } else if (end - start + 1 === k) {
-      ans.push(nums[minArray[0]]);
+    } else if (end - start + 1 == k) {
+      ans.push(Object.keys(freq).length);
 
-      if (minArray[0] === start) {
-        minArray.shift();
+      let startNum = nums[start];
+      freq[startNum]--;
+
+      if (freq[startNum] === 0) {
+        delete freq[startNum];
       }
       start++;
       end++;
@@ -25,7 +27,7 @@ var MinimumElementinEveryWindow = function (nums, k) {
   }
   return ans;
 };
+const arr = [1, 2, 1, 3, 4, 2, 3];
+const k = 4;
 
-const arr = [10, 5, 2, 7, 8, 7];
-const k = 3;
-console.log(MinimumElementinEveryWindow(arr, k));
+console.log(CountDistinctElementsinEveryWindow(arr, k));
