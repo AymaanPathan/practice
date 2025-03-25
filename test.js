@@ -1,24 +1,34 @@
-var WindowwithTargetSumExistence = function (nums, k, target) {
+var LongestSubstringWithKUniqueCharacters = function (s, k) {
   let start = 0;
   let end = 0;
-  let sum = 0;
-  while (end < nums.length) {
-    sum = sum + nums[end];
-    if (end - start + 1 < k) {
-      end++;
-    } else if (end - start + 1 === k) {
-      if (sum === target) {
-        return true;
-      }
-      sum = sum - nums[start];
+  let freq = {};
+  let ans = 0;
+  while (end < s.length) {
+    let chr = s[end];
+    if (!freq[chr]) {
+      freq[chr] = 1;
+    } else {
+      freq[chr]++;
     }
-    start++;
+
+    while (Object.keys(freq).length > k) {
+      let startChr = s[start];
+      freq[startChr]--;
+      if (freq[startChr] === 0) {
+        delete freq[startChr];
+      }
+      start++;
+      end++;
+    }
+
+    if (Object.keys(freq).length === k) {
+      ans = Math.max(ans, end - start + 1);
+    }
     end++;
   }
-  return false;
+  return ans;
 };
-const arr = [1, 2, 3];
-const k = 5;
-const target = 6;
+const arr = "aabacbebebe";
+const k = 3;
 
-console.log(WindowwithTargetSumExistence(arr, k, target));
+console.log(LongestSubstringWithKUniqueCharacters(arr, k));
