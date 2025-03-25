@@ -10,21 +10,21 @@ var LongestSubstringWithKUniqueCharacters = function (s, k) {
     } else {
       freq[chr]++;
     }
-
-    while (Object.keys(freq).length > k) {
-      let startChr = s[start];
-      freq[startChr]--;
-      if (freq[startChr] === 0) {
-        delete freq[startChr];
-      }
-      start++;
+    if (Object.keys(freq).length < k) {
       end++;
-    }
-
-    if (Object.keys(freq).length === k) {
+    } else if (Object.keys(freq).length === k) {
       ans = Math.max(ans, end - start + 1);
+      end++;
+    } else if (Object.keys(freq).length > k) {
+      while (Object.keys(freq).length > k) {
+        let startChr = s[start];
+        freq[startChr]--;
+        if (freq[startChr] === 0) {
+          delete freq[startChr];
+        }
+        start++;
+      }
     }
-    end++;
   }
   return ans;
 };
