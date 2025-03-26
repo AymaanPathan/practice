@@ -1,34 +1,31 @@
-var LongestSubstringWithKUniqueCharacters = function (s, k) {
+var SmallestSubarraywithSumGreatorOrEqualTarget = function (nums, target) {
   let start = 0;
   let end = 0;
-  let freq = {};
-  let ans = 0;
-  while (end < s.length) {
-    let chr = s[end];
-    if (!freq[chr]) {
-      freq[chr] = 1;
-    } else {
-      freq[chr]++;
-    }
-    if (Object.keys(freq).length < k) {
+  let ans = Infinity;
+  let sum = 0;
+  let arr = [];
+  while (end < nums.length) {
+    sum = sum + nums[end];
+    if (sum < target) {
       end++;
-    } else if (Object.keys(freq).length === k) {
-      ans = Math.max(ans, end - start + 1);
-      end++;
-    } else if (Object.keys(freq).length > k) {
-      while (Object.keys(freq).length > k) {
-        let startChr = s[start];
-        freq[startChr]--;
-        if (freq[startChr] === 0) {
-          delete freq[startChr];
+    } else if (sum >= target) {
+      while (sum >= target) {
+        if (ans > end - start + 1) {
+          ans = end - start + 1; // new answer found
+          arr = []; // empty arr after new answer found
+          for (let i = start; i <= end; i++) {
+            arr.push(nums[i]);
+          }
         }
+        sum = sum - nums[start];
         start++;
       }
+      end++;
     }
   }
-  return ans;
+  return arr;
 };
-const arr = "aabacbebebe";
-const k = 3;
+const nums = [2, 3, 1, 2, 4, 3];
+const target = 7;
 
-console.log(LongestSubstringWithKUniqueCharacters(arr, k));
+console.log(SmallestSubarraywithSumGreatorOrEqualTarget(nums, target));
