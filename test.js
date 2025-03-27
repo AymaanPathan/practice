@@ -1,32 +1,36 @@
-var SmallestSubarraywithSumGreatorOrEqualTarget = function (nums, target) {
+var LongestSubstringwithAtMostKDistinctCharacters = function (s, k) {
   let start = 0;
   let end = 0;
-  let ans = [];
-  let sum = 0;
-  let min = Infinity;
-  while (end < nums.length) {
-    sum = sum + nums[end];
-    if (sum < target) {
+  let freq = {};
+  let max = -Infinity;
+  while (end < s.length) {
+    let chr = s[end];
+    if (!freq[chr]) {
+      freq[chr] = 1;
+    } else {
+      freq[chr]++;
+    }
+    if (Object.keys(freq).length < k) {
+      max = Math.max(max, end - start + 1); // edge case
       end++;
-    } else if (sum >= target) {
-      while (sum >= target) {
-        if (end - start + 1 < min) {
-          min = end - start + 1;
-          ans = [];
-          for (let i = start; i <= end; i++) {
-            ans.push(nums[i]);
-          }
+    } else if (Object.keys(freq).length === k) {
+      max = Math.max(max, end - start + 1);
+      end++;
+    } else if (Object.keys(freq).length > k) {
+      while (Object.keys(freq).length > k) {
+        let sChar = s[start];
+        freq[sChar]--;
+        if (freq[sChar] === 0) {
+          delete freq[sChar];
         }
-        sum = sum - nums[start];
         start++;
-        // end  ->end is agge than start we cant do this
       }
       end++;
     }
   }
-  return ans;
+  return max;
 };
-const nums = [2, 3, 1, 2, 4, 3];
-const target = 7;
+const s = "abc";
+const k = 5;
 
-console.log(SmallestSubarraywithSumGreatorOrEqualTarget(nums, target));
+console.log(LongestSubstringwithAtMostKDistinctCharacters(s, k));
