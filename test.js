@@ -1,8 +1,8 @@
-function printOneToN(n) {
+function NtoOne(n) {
   if (n === 0) {
     return;
   }
-  printOneToN(n - 1);
   console.log(n);
+  NtoOne(n - 1);
 }
-printOneToN(7);
+NtoOne(7);
