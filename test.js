@@ -1,13 +1,13 @@
-function nearestGreatestToRight(nums) {
+function nearestSmallestToLeft(nums) {
   let ans = [];
   let stack = [];
-  for (let i = nums.length - 1; i >= 0; i--) {
+  for (let i = 0; i < nums.length; i++) {
     if (stack.length === 0) {
       ans.push(-1);
-    } else if (stack.length > 0 && nums[i] < stack[stack.length - 1]) {
+    } else if (stack.length > 0 && stack[stack.length - 1] < nums[i]) {
       ans.push(stack[stack.length - 1]);
-    } else if (stack.length > 0 && nums[i] >= stack[stack.length - 1]) {
-      while (stack.length > 0 && nums[i] >= stack[stack.length - 1]) {
+    } else if (stack.length >= 0 && stack[stack.length - 1] >= nums[i]) {
+      while (stack.length > 0 && stack[stack.length - 1] >= nums[i]) {
         stack.pop();
       }
       if (stack.length === 0) {
@@ -18,7 +18,7 @@ function nearestGreatestToRight(nums) {
     }
     stack.push(nums[i]);
   }
-  return ans.reverse();
+  return ans;
 }
-const nums = [1, 3, 2, 4];
-console.log(nearestGreatestToRight(nums));
+const nums = [4, 5, 2, 10, 8];
+console.log(nearestSmallestToLeft(nums));
