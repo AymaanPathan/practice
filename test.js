@@ -1,8 +1,8 @@
-function nearestSmallestToLeft(nums) {
+function nearestSmallestToRight(nums) {
   let ans = [];
   let stack = [];
-  for (let i = 0; i < nums.length; i++) {
-    if (stack.length === 0) {
+  for (let i = nums.length - 1; i >= 0; i--) {
+    if (stack.length == 0) {
       ans.push(-1);
     } else if (stack.length > 0 && stack[stack.length - 1] < nums[i]) {
       ans.push(stack[stack.length - 1]);
@@ -18,7 +18,7 @@ function nearestSmallestToLeft(nums) {
     }
     stack.push(nums[i]);
   }
-  return ans;
+  return ans.reverse();
 }
 const nums = [4, 5, 2, 10, 8];
-console.log(nearestSmallestToLeft(nums));
+console.log(nearestSmallestToRight(nums));
