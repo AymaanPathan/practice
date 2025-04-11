@@ -1,6 +1,7 @@
-function nearestGreatestToLeftIndex(nums) {
+function StockSpan(nums) {
   let stack = [];
   let nearestGreatestToLeftIndexArr = [];
+  let ans = [];
   for (let i = 0; i < nums.length; i++) {
     if (stack.length === 0) {
       // If nothing on left side
@@ -17,13 +18,16 @@ function nearestGreatestToLeftIndex(nums) {
         nearestGreatestToLeftIndexArr.push(stack[stack.length - 1].index);
       }
     }
-    // Finaly we get larger on left
+    // Finaly we get larger on  left
     else {
       nearestGreatestToLeftIndexArr.push(stack[stack.length - 1].index);
     }
     stack.push({ element: nums[i], index: i });
   }
-  return nearestGreatestToLeftIndexArr;
+  for (let i = 0; i < nearestGreatestToLeftIndexArr.length; i++) {
+    ans[i] = i - nearestGreatestToLeftIndexArr[i];
+  }
+  return ans;
 }
 const nums = [100, 80, 60, 70, 60, 75, 85];
-console.log(nearestGreatestToLeftIndex(nums));
+console.log(StockSpan(nums));
