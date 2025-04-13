@@ -1,70 +1,46 @@
-// Find nearest smllest to left
-function nearestsmllesttoleft(nums) {
-  let stack = [];
-  let index = [];
-  for (let i = 0; i < nums.length; i++) {
-    if (stack.length === 0) {
-      index.push(-1);
-    } else if (stack.length > 0 && stack[stack.length - 1].element >= nums[i]) {
-      while (stack.length > 0 && stack[stack.length - 1].element >= nums[i]) {
-        stack.pop();
-      }
-      if (stack.length === 0) {
-        index.push(-1);
-      } else {
-        index.push(stack[stack.length - 1].index);
-      }
-    } else {
-      index.push(stack[stack.length - 1].index);
-    }
-    stack.push({ element: nums[i], index: i });
-  }
-  return index;
-}
-
-function nearestsmllesttoRight(nums) {
-  let stack = [];
-  let index = [];
-  for (let i = nums.length - 1; i >= 0; i--) {
-    if (stack.length === 0) {
-      index.push(nums.length);
-    } else if (stack.length > 0 && stack[stack.length - 1].element >= nums[i]) {
-      while (stack.length > 0 && stack[stack.length - 1].element >= nums[i]) {
-        stack.pop();
-      }
-      if (stack.length === 0) {
-        index.push(nums.length);
-      } else {
-        index.push(stack[stack.length - 1].index);
-      }
-    } else {
-      index.push(stack[stack.length - 1].index);
-    }
-    stack.push({ element: nums[i], index: i });
-  }
-  return index.reverse();
-}
-
-function widthArr(nums) {
-  let right = nearestsmllesttoRight(nums);
-  let left = nearestsmllesttoleft(nums);
-  let width = [];
-  for (let i = 0; i < nums.length; i++) {
-    width[i] = right[i] - left[i] - 1;
-  }
-  return width;
-}
-
-function area(nums) {
-  let width = widthArr(nums);
+function maxOfLeft(nums) {
   let ans = [];
-  max = -Infinity;
+  let max = nums[0];
   for (let i = 0; i < nums.length; i++) {
-    ans[i] = width[i] * nums[i];
-    max = Math.max(ans[i], max);
+    max = Math.max(max, nums[i]);
+    ans[i] = max;
   }
-  return max;
+  return ans;
 }
 
-const nums = [6, 2, 5, 4, 5, 1, 6];
-console.log(area(nums));
+function maxOfRight(nums) {
+  let ans = [];
+  let max = nums[nums.length - 1];
+  for (let i = nums.length - 1; i >= 0; i--) {
+    max = Math.max(nums[i], max);
+    ans[i] = max;
+  }
+  return ans;
+}
+
+function takeMinimum(nums) {
+  let minimum = [];
+  let right = maxOfRight(nums);
+  let left = maxOfLeft(nums);
+  let min = -Infinity;
+  for (let i = 0; i < nums.length; i++) {
+    min = Math.min(right[i], left[i]);
+    minimum[i] = min;
+  }
+  return minimum;
+}
+
+var trap = function (height) {
+  let min = takeMinimum(height);
+  let ans = [];
+  for (let i = 0; i < height.length; i++) {
+    ans[i] = min[i] - height[i];
+  }
+  return ans.reduce((acc, sum) => acc + sum, 0);
+};
+
+const nums = [4, 2, 0, 3, 2, 5];
+console.log("ans", trap(nums));
+
+// 1 ans =  we have to do take min(right , left)
+// 2 ans[i] = nums[i]
