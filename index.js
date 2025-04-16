@@ -1,22 +1,22 @@
 var finalPrices = function (prices) {
   let stack = [];
   let ans = [];
-  for (let i = nums.length - 1; i >= 0; i--) {
+  for (let i = prices.length - 1; i >= 0; i--) {
     if (stack.length === 0) {
-      ans.push(nums[i]);
-    } else if (stack.length > 0 && stack[stack.length - 1] > nums[i]) {
-      while (stack.length > 0 && stack[stack.length - 1] > nums[i]) {
+      ans.push(prices[i]);
+    } else if (stack.length > 0 && stack[stack.length - 1] > prices[i]) {
+      while (stack.length > 0 && stack[stack.length - 1] > prices[i]) {
         stack.pop();
       }
       if (stack.length === 0) {
-        ans.push(nums[i]);
+        ans.push(prices[i]);
       } else {
-        ans.push(nums[i] - stack[stack.length - 1]);
+        ans.push(prices[i] - stack[stack.length - 1]);
       }
-    } else if (stack.length > 0 && stack[stack.length - 1] <= nums[i]) {
-      ans.push(nums[i] - stack[stack.length - 1]);
+    } else if (stack.length > 0 && stack[stack.length - 1] <= prices[i]) {
+      ans.push(prices[i] - stack[stack.length - 1]);
     }
-    stack.push(nums[i]);
+    stack.push(prices[i]);
   }
   return ans.reverse();
 };
