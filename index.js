@@ -1,41 +1,24 @@
-function stack1(s) {
-  let stack1 = [];
-  let i = 0;
-  while (i < s.length) {
-    if (s[i] === "#") {
-      stack1.pop();
-      i++;
-    } else {
-      stack1.push(s[i]);
-      i++;
+var finalPrices = function (prices) {
+  let stack = [];
+  let ans = [];
+  for (let i = nums.length - 1; i >= 0; i--) {
+    if (stack.length === 0) {
+      ans.push(nums[i]);
+    } else if (stack.length > 0 && stack[stack.length - 1] > nums[i]) {
+      while (stack.length > 0 && stack[stack.length - 1] > nums[i]) {
+        stack.pop();
+      }
+      if (stack.length === 0) {
+        ans.push(nums[i]);
+      } else {
+        ans.push(nums[i] - stack[stack.length - 1]);
+      }
+    } else if (stack.length > 0 && stack[stack.length - 1] <= nums[i]) {
+      ans.push(nums[i] - stack[stack.length - 1]);
     }
+    stack.push(nums[i]);
   }
-  return stack1;
-}
-function stack2(t) {
-  let stack2 = [];
-  let i = 0;
-  while (i < t.length) {
-    if (t[i] === "#") {
-      stack2.pop();
-      i++;
-    } else {
-      stack2.push(t[i]);
-      i++;
-    }
-  }
-  return stack2;
-}
-
-var backspaceCompare = function (s, t) {
-  let stackOne = stack1(s);
-  let stackTwo = stack2(t);
-  if (stackOne.join("") === stackTwo.join("")) {
-    return true;
-  }
-  return false;
+  return ans.reverse();
 };
-
-const s = "ab#c";
-const t = "ad#c";
-console.log(backspaceCompare(s, t));
+const prices = [8, 4, 6, 2, 3];
+console.log(nearestSmallestToRight(prices));
