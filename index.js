@@ -1,24 +1,33 @@
-var finalPrices = function (prices) {
+var dailyTemperatures = function (temperatures) {
   let stack = [];
   let ans = [];
-  for (let i = prices.length - 1; i >= 0; i--) {
+  for (let i = temperatures.length - 1; i >= 0; i--) {
     if (stack.length === 0) {
-      ans.push(prices[i]);
-    } else if (stack.length > 0 && stack[stack.length - 1] > prices[i]) {
-      while (stack.length > 0 && stack[stack.length - 1] > prices[i]) {
+      ans.push(0);
+    } else if (
+      stack.length > 0 &&
+      stack[stack.length - 1].element > temperatures[i]
+    ) {
+      ans.push(stack[stack.length - 1].index - i);
+    } else if (
+      stack.length > 0 &&
+      stack[stack.length - 1].element <= temperatures[i]
+    ) {
+      while (
+        stack.length > 0 &&
+        stack[stack.length - 1].element <= temperatures[i]
+      ) {
         stack.pop();
       }
-      if (stack.length === 0) {
-        ans.push(prices[i]);
+      if (stack.length == 0) {
+        ans.push(0);
       } else {
-        ans.push(prices[i] - stack[stack.length - 1]);
+        ans.push(stack[stack.length - 1].index - i);
       }
-    } else if (stack.length > 0 && stack[stack.length - 1] <= prices[i]) {
-      ans.push(prices[i] - stack[stack.length - 1]);
     }
-    stack.push(prices[i]);
+    stack.push({ element: temperatures[i], index: i });
   }
   return ans.reverse();
 };
-const prices = [8, 4, 6, 2, 3];
-console.log(nearestSmallestToRight(prices));
+const temperatures = [30, 40, 50, 60];
+console.log(findNearestGreatestToRight(temperatures));
