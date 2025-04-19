@@ -1,33 +1,32 @@
-var dailyTemperatures = function (temperatures) {
+var asteroidCollision = function (asteroids) {
   let stack = [];
-  let ans = [];
-  for (let i = temperatures.length - 1; i >= 0; i--) {
-    if (stack.length === 0) {
-      ans.push(0);
-    } else if (
+  for (let i = 0; i < asteroids.length; i++) {
+    let isCurrentDestroyed = false;
+    while (
       stack.length > 0 &&
-      stack[stack.length - 1].element > temperatures[i]
+      stack[stack.length - 1] > 0 &&
+      asteroids[i] < 0
     ) {
-      ans.push(stack[stack.length - 1].index - i);
-    } else if (
-      stack.length > 0 &&
-      stack[stack.length - 1].element <= temperatures[i]
-    ) {
-      while (
-        stack.length > 0 &&
-        stack[stack.length - 1].element <= temperatures[i]
-      ) {
+      if (stack[stack.length - 1] < Math.abs(asteroids[i])) {
         stack.pop();
-      }
-      if (stack.length == 0) {
-        ans.push(0);
+      } else if (stack[stack.length - 1] === Math.abs(asteroids[i])) {
+        stack.pop();
+        isCurrentDestroyed = true;
+        break;
       } else {
-        ans.push(stack[stack.length - 1].index - i);
+        isCurrentDestroyed = true;
+        break;
       }
     }
-    stack.push({ element: temperatures[i], index: i });
+    if (!isCurrentDestroyed) {
+      stack.push(asteroids[i]);
+    }
   }
-  return ans.reverse();
+  return stack;
 };
-const temperatures = [30, 40, 50, 60];
-console.log(findNearestGreatestToRight(temperatures));
+
+console.log(asteroidCollision([-5, 10, -15])); // Output: [-5, -15]
+console.log(asteroidCollision([5, 10, -5])); // Output: [5, 10]
+console.log(asteroidCollision([8, -8])); // Output: []
+console.log(asteroidCollision([10, 2, -5])); // Output: [10]
+console.log(asteroidCollision([-2, -1, 1, 2])); // Output: [-2, -1, 1, 2]
