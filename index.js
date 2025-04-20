@@ -1,32 +1,33 @@
-var nextGreaterElements = function (nums) {
+var nextGreaterElement = function (nums1, nums2) {
   let stack = [];
   let ans = [];
-  for (let i = 2 * nums.length - 1; i >= 0; i--) {
-    let index = i % nums.length;
+  let map = {};
+  for (let i = nums2.length - 1; i >= 0; i--) {
     if (stack.length === 0) {
-      if (i < nums.length) {
-        ans.push(-1);
+      if (nums1.includes(nums2[i])) {
+        map[nums2[i]] = -1;
       }
-    } else if (stack.length > 0 && stack[stack.length - 1] > nums[index]) {
-      if (i < nums.length) {
-        ans.push(stack[stack.length - 1]);
+    } else if (stack.length > 0 && stack[stack.length - 1] >= nums2[i]) {
+      if (nums1.includes(nums2[i])) {
+        map[nums2[i]] = stack[stack.length - 1];
       }
-    } else if (stack.length > 0 && stack[stack.length - 1] <= nums[index]) {
-      while (stack.length > 0 && stack[stack.length - 1] <= nums[index]) {
+    } else if (stack.length > 0 && stack[stack.length - 1] < nums2[i]) {
+      while (stack.length > 0 && stack[stack.length - 1] < nums2[i]) {
         stack.pop();
       }
-      if (i < nums.length) {
-        if (stack.length == 0) {
-          ans.push(-1);
-        } else {
-          ans.push(stack[stack.length - 1]);
-        }
+      if (stack.length == 0) {
+        map[nums2[i]] = -1;
+      } else if (nums1.includes(nums2[i])) {
+        map[nums2[i]] = stack[stack.length - 1];
       }
     }
-    stack.push(nums[index]);
+    stack.push(nums2[i]);
   }
-  return ans.reverse();
+  for (i = 0; i < nums1.length; i++) {
+    ans.push(map[nums1[i]]);
+  }
+  return ans;
 };
-const nums = [1, 2, 1];
-
-console.log(nextGreaterElements(nums));
+const nums1 = [4, 1, 2];
+const nums2 = [1, 3, 4, 2];
+console.log(nextGreaterElement(nums1, nums2));
