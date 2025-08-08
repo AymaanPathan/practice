@@ -5,7 +5,7 @@ function nearest_smallest_to_left(nums) {
   let stack = [];
   let ans = [];
   for (let i = 0; i < nums.length; i++) {
-    while (stack.length > 0 && stack[stack.length - 1] >= nums[i]) {
+    while (stack.length > 0 && stack[stack.length - 1] <= nums[i]) {
       stack.pop();
     }
     if (stack.length === 0) {
