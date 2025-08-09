@@ -19,5 +19,6 @@ function stock_span(nums) {
   }
   return ans
 }
-const arr = [];
+const arr = [100, 80, 60, 70, 60, 75, 85];
+
 console.log(stock_span(arr));
