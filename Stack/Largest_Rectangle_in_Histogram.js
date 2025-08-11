@@ -22,7 +22,7 @@ function nearest_smaller_to_right(nums) {
     while (stack.length > 0 && nums[stack[stack.length - 1]] >= nums[i]) {
       stack.pop();
     }
-    if (stack.length === 0) {
+    if (stack.length === 0) {   
       ans.push(nums.length);
     } else {
       ans.push(stack[stack.length - 1]);
