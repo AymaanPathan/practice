@@ -13,8 +13,8 @@ var find132pattern = function (nums) {
   return stack;
 };
 
-const arr1 = [1, 2, 3, 4]; // no 132 pattern
-const arr2 = [3, 1, 4, 2]; // has 132 pattern
 
-console.log(find132pattern(arr1)); // false
+const arr= [3, 1, 4, 2]; // has 132 pattern
+
+console.log(find132pattern(arr)); // false
 
