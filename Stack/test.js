@@ -1,28 +1,20 @@
-// 1.  asteroidCollision
-var asteroidCollision = function (asteroids) {
+function backSpace(str) {
   let stack = [];
-  for (let i = 0; i < asteroids.length; i++) {
-    let isIncomingDestroyed = false;
-    while (
-      stack.length > 0 &&
-      stack[stack.length - 1] > 0 &&
-      asteroids[i] < 0
-    ) {
-      if (Math.abs(stack[stack.length - 1]) < Math.abs(asteroids[i])) {
-        stack.pop();
-        continue // skip below conditions and got to next iteration
-      } else if (Math.abs(stack[stack.length - 1]) == Math.abs(asteroids[i])) {
-        stack.pop();
-        isIncomingDestroyed = true; // incoming asteroid also gone
-        break;
-      } else {
-        isIncomingDestroyed = true;
-        break;
-      }
-    }
-    if (!isIncomingDestroyed) {
-      stack.push(asteroids[i]);
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === "#") {
+      console.log("backspace");
+      stack.pop();
+    } else {
+      stack.push(str[i]);
     }
   }
-  return stack;
+  return stack.join("");
+}
+
+var backspaceCompare = function (s, t) {
+  let str1BackSpace = backSpace(s);
+  let str2BackSpace = backSpace(t);
+  return str1BackSpace===str2BackSpace
 };
+const s = "ab#c";
+console.log(backSpace(s));
