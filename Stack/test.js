@@ -1,29 +1,28 @@
-// If "+" Record a new score that is the sum of the previous two scores.
-// if "D" Record a new score that is the double of the previous score.
-// if "C" Remove the  stack top
-// Lastly sum it all
-
-var calPoints = function (operations) {
+var dailyTemperatures = function (temperatures) {
   let stack = [];
-  for (let i = 0; i < operations.length; i++) {
-    if (operations[i] === "+") {
-      let sum = stack[stack.length - 1] + stack[stack.length - 2];
-      stack.push(sum);
-    } else if (operations[i] === "D") {
-      let double = stack[stack.length - 1] * 2;
-      stack.push(double);
-    } else if (operations[i] === "C") {
+  let ans = [];
+  for (let i = temperatures.length - 1; i >= 0; i--) {
+    while (
+      stack.length > 0 &&
+      stack[stack.length - 1].value <= temperatures[i]
+    ) {
       stack.pop();
-    } else {
-      stack.push(Number(operations[i]));
     }
+    if (stack.length === 0) {
+      ans.push(i);
+    } else {
+      ans.push(stack[stack.length - 1].index);
+    }
+    stack.push({
+      value: temperatures[i],
+      index: i,
+    });
   }
-  let ans = 0;
-  for (let i = 0; i < stack.length; i++) {
-    ans += stack[i];
+  ans.reverse();
+  for (let i = 0; i < ans.length; i++) {
+    ans[i] = ans[i] - i;
   }
-  return ans;
+  return ans
 };
-
-const ops = ["5", "2", "C", "D", "+"];
-console.log(calPoints(ops));
+const arr = [89, 62, 70, 58, 47, 47, 46, 76, 100, 70];
+console.log(dailyTemperatures(arr));
